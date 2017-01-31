@@ -31,6 +31,7 @@ gem 'jquery-turbolinks'
 gem 'paperclip'
 gem 'aasm'
 gem 'will_paginate'
+# gem 'aws-sdk', '2.3'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 
 # Use Capistrano for deployment
@@ -41,13 +42,14 @@ group :development, :test do
   gem 'byebug', platform: :mri
 end
 
-group :development do
+#group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-end
+  #gem 'web-console'
+#end
 
 group :development do
 	gem 'sqlite3'
+	gem 'web-console'
 end
 
 group :production do
