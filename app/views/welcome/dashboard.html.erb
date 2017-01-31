@@ -1,0 +1,128 @@
+<div class="tabGroup">
+    <input type="radio" name="tabGroup1" id="rad1" class="tab1" checked="checked"/>
+    <input type="radio" name="tabGroup1" id="rad2" class="tab2"/>
+    <input type="radio" name="tabGroup1" id="rad3" class="tab3"/>
+     
+    <div class="tablabels">
+        <label for="rad1">Tab 1</label>
+        <label for="rad2">Tab 2</label>
+        <label for="rad3">Tab 3</label>
+        <li><%= link_to "Inicio", root_path %></li>
+		<li><%= link_to "Artículos", articles_path %></li>
+		<li><%= link_to "Usuarios", users_path %></li>
+		<li><%= link_to "Categorías", categories_path %></li>
+    </div>
+ 
+    <div class="tabcontent">
+        <div class="tab1">
+        	<% if @articles.any? %>
+				Hay <%= @articles.count %> artículo(s) en total - <%= @articles.publisheds.count %> no publicado(s)
+			<%else%>	
+				No se encontraron artículos
+			<%end%>
+
+			<%= form_tag dashboard_path, method: :get do %>
+				<%= text_field_tag :article_search, params[:article_search], pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar artículos" %>
+				<%= submit_tag "Search" %>
+			<%end%>
+
+			<% @articles.each do |article| %>
+				<h1><%= link_to article.title, article %></h1>
+				<div><%= article.body %> - <%= link_to "Eliminar", article, method: :delete, class:"red-text" %> - 
+					<% if article.may_publish? %>
+						<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, class:"dark-green-text" %>
+					<%else%>
+						<%= link_to "Unpublicar", "/articles/#{article.id}/unpublish", method: :put, class:"orange-text" %>
+					<%end%>
+				</div>
+			<%end%>
+			<%= will_paginate @articles, :param_name => 'articles_page' %>
+        </div>
+
+        <div class="tab2">
+        	<% if @users.any? %>
+				Hay <%= @users.count %> usuario(s) en total
+			<%else%>	
+				No se encontraron usuarios
+			<%end%>
+
+			<%= form_tag dashboard_path, method: :get do %>
+				<%= text_field_tag :user_search, params[:user_search], pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar usuarios" %>
+				<%= submit_tag "Search" %>
+			<%end%>
+
+			<ul>
+			    <% @users.each do |user| %>
+			        <li>
+			        	<%= link_to user.username, user_path(user) %> - <%= image_tag user.avatar.url %> - <%= link_to "Eliminar", user, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %>
+			        </li>
+			    <% end %>
+			</ul>
+			<%= will_paginate @users, :param_name => 'users_page' %>
+        </div>
+
+        <div class="tab3">
+        	<% if @categories.any? %>
+			  Hay <%= @categories.count %> categoría(s) en total
+			<%else%>  
+			  No se encontraron categorías
+			<%end%>
+
+			<%= form_tag dashboard_path, method: :get do %>
+			  <%= text_field_tag :category_search, params[:category_search], pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar categorías" %>
+			  <%= submit_tag "Search" %>
+			<%end%>
+
+			<table>
+			  <thead>
+			    <tr>
+			      <th>Title</th>
+			      <th>Color</th>
+			      <th colspan="3"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @categories.each do |category| %>
+			      <tr>
+			        <td><%= category.title %></td>
+			        <td><%= category.color %></td>
+			        <td><%= link_to 'Show', category %></td>
+			        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+			        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			      </tr>
+			    <%end%>
+			  </tbody>
+			</table>
+			<%= will_paginate @categories, :param_name => 'categories_page' %>
+        </div>
+    </div>
+</div>
+
+<div style="margin:1500px auto; position:relative; padding:20px; background:blue;">
+<%= form_for(@article) do |f| %>
+	<% @article.errors.full_messages.each do |message| %>
+		<div class="red message white-text medium-text small-margin-bottom small-border-radius">
+			<%= message %>
+		</div>
+	<%end%>
+	<div class="large-margin-bottom">
+		Portada: <%= f.file_field :cover %> 
+	</div>
+	<div class="large-margin-bottom">
+		<%= f.text_field :title, placeholder: "Título", class:"input" %>
+	</div>
+	<div class="large-margin-bottom">
+		<%= f.text_area :body, placeholder: "Cuerpo del artículo" , style:"max-width: 100%; min-height:200px;", class:"input" %>
+	</div>
+	<div>
+		<label>Categorías</label>
+		<% @categories.each do |category| %>
+			<div><%= check_box_tag "categories[]", category.id %> <%= category.title %></div>
+		<%end%>
+	</div>
+	<div>
+		<%= f.submit "Guardar", class:"btn blue small-border-radius" %>
+	</div>
+<%end%>
+</div>

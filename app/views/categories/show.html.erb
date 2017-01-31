@@ -1,0 +1,27 @@
+<h1 style="color:<%= @category.color %>;"><%= @category.title %></h1>
+
+<% if @articles.any? %>
+	Hay <%= @articles.count %> artículos
+<%else%>	
+	No se encontraron artículos
+<%end%>
+
+<%= form_tag @category, method: :get do %>
+  <%= text_field_tag :article_search, params[:article_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar categorías" %>
+  <%= submit_tag "Search" %>
+<%end%>
+
+<% @articles.each do |article| %>
+	<h1><%= link_to article.title, article %></h1>
+	<div>
+		<%= article.body %>
+	</div>
+<%end%>
+
+<p>
+  <strong>Color:</strong>
+  <%= @category.color %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

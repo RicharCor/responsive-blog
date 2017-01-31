@@ -1,0 +1,18 @@
+<h1>Usuarios</h1>
+
+<% if @users.any? %>
+	Hay <%= @users.count %> usuarios
+<%else%>	
+	No se encontraron usuarios
+<%end%>
+
+<%= form_tag users_path, method: :get do %>
+	<%= text_field_tag :user_search, params[:user_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar usuarios" %>
+	<%= submit_tag "Search" %>
+<%end%>
+
+<ul>
+    <% @users.each do |user| %>
+        <li><%= link_to user.username, user_path(user) %> - <%= image_tag user.avatar.url %></li>
+    <% end %>
+</ul>

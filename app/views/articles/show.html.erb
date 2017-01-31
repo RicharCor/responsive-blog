@@ -1,0 +1,54 @@
+<div>
+	<%= image_tag @article.cover.url, class:"cover" %>
+</div>
+
+<h1>
+	<%= @article.title %>
+</h1>
+
+<div>
+	<%= @article.body %>
+</div>
+
+<% unless @article.user.nil? %>
+	<p>Escrito por: <%= @article.user.username %></p>
+<%end%>
+
+<% if @article.published? %>
+	Estado: Publicado
+<%else%>
+	Artículo pendiente a aprobación
+<%end%>
+
+<div>
+	<% @article.categories.each do |category| %>
+		<%= link_to category.title, category, style:"color: #{category.color};" %>
+	<%end%>
+</div>
+
+<div>
+	<h3>
+		Comentarios
+	</h3>
+
+	<% if user_signed_in? %>
+		<%= render 'comments/form', :comment => @comment %>
+	<%else%>
+		<p>Tienes que iniciar sesión para agregar un comentario</p>
+	<%end%>
+	
+	<ul id="comments-box">
+		<%= render @comment %>
+	</ul>
+</div>
+
+
+<div>
+	<p>Visitas: <%= @article.visits_count %></p>
+	<% if user_signed_in? %>
+		<% if current_user == @article.user or current_user.is_admin? %>
+			<p><%= link_to "Editar", edit_article_path(@article) %></p>
+		<%end%>
+	<%end%>
+	
+</div>
