@@ -42,6 +42,7 @@ header nav {
 }
 header nav ul{
 	list-style: none;
+	float: right;
 }
 header nav ul li{
 	display: block;
@@ -80,6 +81,7 @@ header nav ul li a {
 	right: 0;
 	cursor: pointer;
 	color: #bdc3c7;
+	font-size: 18px;
 	width: 72px;
 	height: 65px;
 }
@@ -88,11 +90,11 @@ header nav ul li a:hover{
 } 
 header nav ul li:hover .children-user{
 	display: block;
-	top: 65px;
+	top: 65.4px;
 } 
 header nav ul li .children-user{
 	display: none;
-	background: #d04343;
+	background: #455A64;
 	position: absolute;
 	width: auto;
 	right: 0; 
@@ -103,6 +105,15 @@ header nav ul li .children-user li {
 	width: 100%;
 	min-width: 140px;
 	overflow: hidden;
+}
+header nav ul li .children-user div h2 {
+	padding-top: 10px; 
+}
+header nav ul li .children-user div li a img {
+	width: 250px;
+	height: 250px;
+	padding: 20px 20px;
+	margin-top: -10px; 
 } 
 .user-icon{
 	padding: 19px 20px;
@@ -120,7 +131,7 @@ header nav ul li .children-user li {
 
 
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1024px) {
 	.show-from-left{
 		left: 0px !important;
 	}
@@ -133,50 +144,55 @@ header nav ul li .children-user li {
 		min-width: 300px;
 		position: fixed;
 		top: 0;
+		z-index: 1000;
 		background: #455A64;
 	}
 	.mobile-logo{
-		width: 150px;
+		width: 218px;
 		display: block;
-		height: 150px;
+		height: 100px;
 		position: relative;
 		margin: 0px auto;
 	}
 	.mobile-logo img{
-		width: 65px;
+		width: 100px;
 		height: 100%;
-		padding: 10px 10px;
+		padding: 15px 15px;
 		display: block;
 		float: left;
 	}
+	.mobile-logo p{
+		font-size: 50px;
+		float: left;
+	}
 	header nav{
-		top: 65px;
+		top: 100px;
 		width: 80%;
 		height: 100%;
 		background: #455A64 !important;
 		position: fixed;
 		left: -100%;
+		z-index: 999;
 		overflow: auto;
+		box-shadow: none;
 	}
 	header nav .logo-container{
 		display: none;
 	}
+	header nav ul{
+		float: none !important;
+	}
 	header nav ul li{
 		float: none;
 		position: relative;
-		box-shadow: inset 10px 0 0 0 #1abc9c;
-		-webkit-transition: all ease 0.8s;
-	    -moz-transition: all ease 0.8s;
-	    -ms-transition: all ease 0.8s;
-	    -o-transition: all ease 0.8s;
-	    transition: all ease 0.8s;
-	}
-	header nav ul li:hover{
-		background: none !important;
-		box-shadow: inset 645px 0 0 0 #1abc9c;
 	}
 	header nav ul li:hover .children {
 		display: none;
+	}
+	header nav ul li a{
+		color: #fff;
+		font-size: 40px;
+		padding: 40px 40px;
 	}
 	#header-search{
 		display: none;
@@ -191,9 +207,7 @@ header nav ul li .children-user li {
 	 	position: relative;
 	  	float: left;
 	  	display: block;
-	  	max-width: 65px;
-	  	max-height: 65px;
-	  	padding: 32.5px 32.5px;
+	  	padding: 50px 50px;
 	  	input{
 		    position: absolute;
 		    width: 100%;
@@ -207,18 +221,18 @@ header nav ul li .children-user li {
 		      + span{
 		        	background: transparent;
 		        	&:after{
-		          		transform: rotate(45deg) translate(-4.5px, -7px);
+		          		transform: rotate(45deg) translate(-8px, -6px);
 		        	}	
 		        	&:before{
-		          		transform: rotate(-45deg) translate(-4.5px, 7px);
+		          		transform: rotate(-45deg) translate(-11px, 10px);
 		        	}
 		      	}
 		    }
 		}
 		span {
 		    position: absolute;
-		    width: 45%;
-		    height: 4.5px;
+		    width: 50%;
+		    height: 6px;
 		    left: 25%;
 		    background: #fff;
 		    transition: all 0.2s;
@@ -226,20 +240,18 @@ header nav ul li .children-user li {
 		      		content: "";
 		      		position: absolute;
 		      		width: 100%;
-		      		height: 4.5px;
+		      		height: 6px;
 		      		background: #fff;
-		      		top: -8px;
+		      		top: -12px;
 		      		transition: all 0.3s;
 		    	}
 		    &:after {
-		      	top: 8px;
+		      	top: 12px;
 		    }
 	 	}
 	}
 	.toggle-user{
-		padding: 20px 24px;
-		max-width: 65px;
-		max-height: 65px;
+		padding: 26px 32.7px;
 		position: absolute;
 		display: block;
 		top: 0;
@@ -249,7 +261,7 @@ header nav ul li .children-user li {
 		font-size: 26px !important; 
 	}
 	.header-user{
-		top: 65px;
+		top: 100px;
 		width: 80%;
 		height: 100%;
 		right: -100%;
@@ -257,7 +269,27 @@ header nav ul li .children-user li {
 		position: fixed;
 		overflow: auto;
 	}
+	.header-user p {
+		font-size: 40px;
+		padding: 20px 0px;
+		text-transform: uppercase;
+	}
 	.header-user img{
-		width: 60px; 
+		width: 60%;
+		-webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -o-border-radius: 50%;
+	    -ms-border-radius: 50%;
+	    border-radius: 50%;
+	    margin-bottom: 30px; 
+	}
+	.header-user ul li{
+		list-style: none;
+	}
+	.header-user ul li a{
+		color: #fff;
+		font-size: 40px;
+		display: block;
+		padding: 40px 40px;
 	}
 }

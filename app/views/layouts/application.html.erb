@@ -9,27 +9,7 @@
     </head>
 
     <div id="box-global" class="margin-from-header short-transition">
-        <% if current_page?(root_path) %>
-            <script type="text/javascript">
-                $(function() {
-                    $("#box-global").removeClass("margin-from-header");
-                    $(".header_index").addClass("header-index-background");
-
-                    $(window).scroll(function() {
-                        var scroll = $(window).scrollTop();
-                        if (scroll >= 300) {
-                            $(".header_index").removeClass("header-index-background");
-                        } else {
-                            $(".header_index").addClass("header-index-background");
-                        }
-                    });
-                });
-            </script>
-
-            <%= render "layouts/header_index" %>
-        <%else%>
-            <%= render "layouts/header" %>
-        <% end %>
+        <%= render "layouts/header" %>
 
         <body>     
             <p class="notice"><%= notice %></p>
