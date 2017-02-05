@@ -4,9 +4,11 @@
 		  	<input class="toggle" type="checkbox">
 			<span></span>
 		</div>
+
 		<div class="mobile-logo">
 			<%= image_tag ("logo.png"), class:"logo" %><h1 class="white-text lighter-font medium-padding-top left">Ruby</h1>  
 		</div>
+
 		<div class="toggle-user">
 			<i class="fa fa-user white-text toggle-user-icon"></i>
 			<li class="header-user short-transition list-none">
@@ -18,11 +20,11 @@
 				<%end%>
 				<ul class="children-user">
 					<% if user_signed_in? %>
-						<li class="list-none"><%= link_to "Editar cuenta", edit_user_registration_path, class:"a" %></li>							
+						<li class="list-none"><%= link_to "Editar cuenta", edit_user_registration_path %></li>							
 						<li class="list-none"><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class:"a" %></li>
 					<%else%>
-						<li class="list-none"><%= link_to "Iniciar sesiao", new_user_session_path, class:"a" %></li>
-						<li class="list-none"><%= link_to "Crear cuenta", new_user_registration_path, class:"a" %></li>
+						<li class="list-none"><%= link_to "Iniciar sesión", new_user_session_path %></li>
+						<li class="list-none"><%= link_to "Crear cuenta", new_user_registration_path %></li>
 					<%end%>
 				</ul>
 			</li>
@@ -31,42 +33,39 @@
 
 	<nav class="header header-background short-transition">
 		<div class="logo-container">
-			<%= image_tag ("logo.png"), class:"logo" %>	
+			<%= image_tag ("logo.png"), class:"logo" %>
+			<p class="white-text lighter-font">Ruby</p>	
 		</div>
-		<ul>
-			<li><%= link_to "Inicio", root_path, class:"a" %></li>
-			<li><%= link_to "Artículos", articles_path, class:"a" %></li>
-			<li><%= link_to "Usuarios", users_path, class:"a" %></li>
-			<li class="submenu">
-				<%= link_to "Categorías", categories_path, class:"a" %>
-				<ul class="children">
-					<% @categories.each do |category| %>
-						<li><%= link_to category.title, category %></li>
-					<%end%>
-				</ul>
-			<li>
+
+		<ul class="right">
+			<li><%= link_to "Inicio", root_path %></li>
+			<li><%= link_to "Artículos", articles_path %></li>
+			<li><%= link_to "Usuarios", users_path %></li>
+			<li><%= link_to "Categorías", categories_path %></li>
+			<li id="header-search">
 				<%= form_tag articles_path, method: :get do %>
-					<%= text_field_tag :article_search, params[:article_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar artículos" %>
-					<%= submit_tag "Search" %>
+					<%= text_field_tag :article_search, params[:article_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar artículos", class:"left border-none header-search short-transition" %>
+					<%= button_tag(type: "submit", class:"header-submit border-none") do %>
+					  <i class="fa fa-search fa-2x short-transition"></i>
+					<% end %> 
 				<%end%>
 			</li>				
-			<li class="user-container no-padding submenu right">
-				<% if user_signed_in? %>
-					<%= link_to current_user.first_name, current_user, class: "user-name left bold-font" %>
-					<%= link_to image_tag(current_user.avatar.url,  class:"avatar"), current_user, class: "no-padding left" %>
-				<%else%>
-					<%= link_to image_tag("avatar-3.png"), current_user, class: "no-padding" %>
-				<%end%>
+			<li class="user-container submenu no-padding right">
+				<i class="fa fa-user-circle-o fa-2x user-icon"></i>
 				<ul class="children-user">
 					<% if user_signed_in? %>
-						<li><%= link_to "Editar cuenta", edit_user_registration_path, class:"a" %></li>							
-						<li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class:"a" %></li>
+						<h2><%=  current_user.first_name %></h2>
+						<li><%= link_to image_tag(current_user.avatar.url,  class:"avatar"), current_user, class: "no-padding left pistache" %></li>
+						<li><%= link_to "Editar cuenta", edit_user_registration_path %></li>
+						<li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
 					<%else%>
-						<li><%= link_to "Iniciar sesión", new_user_session_path, class:"a" %></li>
-						<li><%= link_to "Crear cuenta", new_user_registration_path, class:"a" %></li>
+						<%= link_to image_tag("avatar-3.png"), current_user, class: "no-padding pistache" %>
+						<li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+						<li><%= link_to "Crear cuenta", new_user_registration_path %></li>
 					<%end%>
 				</ul>
 			</li>
 		</ul>
 	</nav>
 </header>
+

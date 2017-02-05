@@ -22,6 +22,22 @@ a{
 	text-decoration: none;
 	color:#3498db;
 }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #bdc3c7;
+  font-size: 14px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #bdc3c7;
+  font-size: 14px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #bdc3c7;
+  font-size: 14px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #bdc3c7;
+  font-size: 14px;
+}
 .left{
 	float: left; 
 }
@@ -112,7 +128,16 @@ a{
 .red-flat{
 	background: #c83232;
 }
+.pistache{
+	background: #1abc9c;
+}
+.dark-pistache{
+	background: #16a085;
+}
 .green{
+	background: #2ecc71;
+}
+.dark-green{
 	background: #27ae60;
 }
 .orange{
@@ -278,4 +303,14 @@ a{
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
+}
+.circle{
+	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+}
+.border-none{
+	border: none; 
 }
