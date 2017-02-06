@@ -8,6 +8,18 @@
 		<div class="mobile-logo">
 			<%= image_tag ("logo.png"), class:"logo" %><p class="white-text lighter-font large-padding-top left">Ruby</p>  
 		</div>
+		
+		<div class="toggle-search">
+			<i class="fa fa-search white-text fa-3x"></i>
+		</div>
+		<li id="mobile-header-search" class="list-none short-transition display-none">
+			<%= form_tag articles_path, method: :get do %>
+				<%= text_field_tag :article_search, params[:article_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar artículos", class:"left border-none header-search short-transition" %>
+				<%= button_tag(type: "submit", class:"header-submit border-none") do %>
+					  <i class="fa fa-search fa-2x short-transition"></i>
+				<% end %> 
+			<%end%>
+		</li>
 
 		<div class="toggle-user">
 			<i class="fa fa-user white-text fa-3x"></i>
@@ -17,7 +29,7 @@
 						<p class="white-text">Hola <%=  current_user.first_name %>!</p>
 						<%= link_to image_tag(current_user.avatar.url,  class:"avatar"), current_user %>
 					<%else%>
-						<%= link_to image_tag("avatar-3.png"), current_user, class: "list no-padding" %>
+						<%= link_to image_tag("avatar.jpg"), current_user, class: "no-padding" %>
 					<%end%>
 				</div>
 
@@ -70,7 +82,7 @@
 						<li><%= link_to "Editar cuenta", edit_user_registration_path %></li>
 						<li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %></li>
 					<%else%>
-						<%= link_to image_tag("avatar-3.png"), current_user, class: "no-padding pistache" %>
+						<%= link_to image_tag("avatar.jpg", class:"guest-avatar-header circle"), current_user, class:"no-padding pistache" %>
 						<li><%= link_to "Iniciar sesión", new_user_session_path %></li>
 						<li><%= link_to "Crear cuenta", new_user_registration_path %></li>
 					<%end%>

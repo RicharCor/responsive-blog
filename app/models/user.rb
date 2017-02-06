@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   	acts_as_messageable
 
+  	validates :avatar, presence: true
 	validates :username, presence: true, uniqueness: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
