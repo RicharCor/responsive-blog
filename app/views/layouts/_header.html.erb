@@ -56,6 +56,9 @@
 		<ul>
 			<li><%= link_to "Inicio", root_path %></li>
 			<li><%= link_to "Artículos", articles_path %></li>
+			<% if user_signed_in? %>
+				<li><%= link_to "Nuevo artículo", new_article_path(@article) %></li>
+			<%end%>
 			<li><%= link_to "Usuarios", users_path %></li>
 			<li><%= link_to "Categorías", categories_path %></li>
 			<li id="header-search">

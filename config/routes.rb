@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :friendships
 	resources :categories
 		resources :articles do
   			resources :comments, only: [:create, :destroy]
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
 	devise_for :users 
 	resources :users, only: [:index, :show, :destroy]
 
-	root 'welcome#index'
+	root 'articles#index'
 
 	get "/dashboard", to: "welcome#dashboard"
 

@@ -9,6 +9,8 @@ class User < ApplicationRecord
 	validates :username, presence: true, uniqueness: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
+
+	validates_length_of :username, :maximum => 15
 	
 	has_many :conversations, :foreign_key => :sender_id
 	has_many :articles

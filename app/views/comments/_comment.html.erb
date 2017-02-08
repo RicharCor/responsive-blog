@@ -6,21 +6,45 @@
 	<%end%>
 </p>
 
-<% @article.comments.each do |comment| %>
-	<% if comment.user.nil? %>
-		<li>		
-			<% if current_user.is_admin? %>
-				<p class="red_text">Comentario eliminado</p> - <%= link_to "Delete", [@article, comment], method: :delete, class:"red-text" %>
-			<%end%>
-		</li>
-	<%else%>
-		<li>		
-			<b><%= comment.title %></b> - <%= comment.body %> - <%= comment.user.username %> <%= time_ago_in_words(comment.created_at) %> 
-			<% if user_signed_in? %>
-				<% if current_user.is_admin? or comment.user == current_user %>
-					- <%= link_to "Delete", [@article, comment], method: :delete, class:"red-text" %>
-				<%end%>
-			<%end%>
-		</li>
-	<%end%>	
-<%end%>
+<div class="row center-md center-sm relative">
+	<% @article.comments.each do |comment| %>
+		<div class="col-md-7 col-sm-11 comment-container white large-margin-bottom">
+			<% if comment.user.nil? %>
+				<li class="list-none">		
+					<% if current_user.is_admin? %>
+						<p class="red_text">Comentario eliminado</p> - <%= link_to "Delete", [@article, comment], method: :delete, class:"red-text" %>
+					<%end%>
+				</li>
+			<%else%>
+
+				<li class="row list-none">
+					<div class="col-md-2 col-sm-3">
+						<%= link_to image_tag(comment.user.avatar, class:"circle", style:"width: 80px; height: 80px;") %>
+					</div>
+					
+					<div class="col-md-10 col-sm-9">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 small-margin-bottom">
+								<h2 class="left"><%= link_to comment.user.username, comment.user %></h2>
+								<p class="right-text small-margin-top"><%= time_ago_in_words(comment.created_at) %> ago</p>
+								<% if user_signed_in? %>
+									<% if current_user.is_admin? or comment.user == current_user %>
+										<p class="right no-padding small-margin-top"><%= link_to "Eliminar", [@article, comment], method: :delete, class:"red-text" %></p>
+									<%end%>
+								<%end%>
+							</div>
+
+							<div class="col-md-12 col-sm-12 left-text">
+								<h4 class="border-top medium-padding-top"><%= comment.title %></h4>
+							</div>
+
+							<div class="col-md-12 col-sm-12 left-text">
+								<p class="small-padding-top"><%= comment.body %></p>
+							</div>
+						</div>
+					</div>
+				</li>
+			</div>				
+		<%end%>	
+	<%end%>
+</div>

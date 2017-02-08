@@ -31,6 +31,7 @@ gem 'jquery-turbolinks'
 gem 'paperclip'
 gem 'aasm'
 gem 'will_paginate'
+gem 'trix'
 # gem 'aws-sdk', '2.3'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 

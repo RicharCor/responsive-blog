@@ -11,7 +11,7 @@
 		<%= f.text_field :title, placeholder: "Título", class:"input" %>
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.text_area :body, placeholder: "Cuerpo del artículo" , style:"max-width: 100%; min-height:200px;", class:"input" %>
+		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo" , style:"max-width: 100%; min-height:200px;", class:"input" %>
 	</div>
 	<div>
 		<label>Categorías</label>
