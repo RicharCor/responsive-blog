@@ -9,5 +9,11 @@ class WelcomeController < ApplicationController
 		@users = User.paginate(page: params[:users_page], per_page: 1).search(user)
 		@categories = Category.paginate(page: params[:categories_page], per_page: 5).search(category)
 		@article = Article.new
+
+		def destroy
+			@article.destroy
+	 		flash[:notice] = "Article deleted successfully"
+	 		redirect_to articles_path
+		end
 	end
 end

@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
 		@article = Article.new
 	end
 
-	#Show es la vista de cada articulo por separado
 	def show
 	 	@article.update_visits_count
 	 	@comment = Comment.new
