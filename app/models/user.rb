@@ -13,8 +13,8 @@ class User < ApplicationRecord
 	validates_length_of :username, :maximum => 15
 	
 	has_many :conversations, :foreign_key => :sender_id
-	has_many :articles, dependent: :delete
-	has_many :comments, dependent: :delete
+	has_many :articles, dependent: :delete_all
+	has_many :comments, dependent: :delete_all
 
 	include PermissionsConcern
 
