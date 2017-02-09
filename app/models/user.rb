@@ -14,7 +14,7 @@ class User < ApplicationRecord
 	
 	has_many :conversations, :foreign_key => :sender_id
 	has_many :articles, dependent: :destroy
-	has_many :comments
+	has_many :comments, dependent: :destroy
 
 	include PermissionsConcern
 
