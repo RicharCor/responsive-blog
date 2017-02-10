@@ -2,7 +2,7 @@ class Article < ApplicationRecord
 	include AASM
 	default_scope { order('created_at DESC') }
 
-	belongs_to :user, :dependent => :delete_all
+	belongs_to :user, :dependent => :destroy
 	has_many :comments
 	has_many :has_categories
 	has_many :categories, through: :has_categories
