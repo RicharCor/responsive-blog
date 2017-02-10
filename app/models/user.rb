@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
 	validates_length_of :username, :maximum => 15
 	
-	has_many :articles
-	has_many :comments
+	has_many :articles, :dependent => :delete_all
+	has_many :comments, :dependent => :delete_all
 
 	include PermissionsConcern
 
