@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
 	default_scope { order('created_at DESC') }
 	
-  	belongs_to :user, :dependent => :delete_all
+  	belongs_to :user
   	belongs_to :article
 
   	validates :title, presence: true
