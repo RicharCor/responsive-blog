@@ -12,6 +12,12 @@
     max-width: 1500px !important;
     word-wrap: break-word;
 }
+#loading-indicator {
+	display: block;
+	margin: 0px auto;
+	width: 100px;
+	height: 100px;
+}
 .margin-from-header{
 	margin-top: 65px !important;
 }
