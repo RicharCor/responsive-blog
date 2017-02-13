@@ -2,5 +2,5 @@ $('#articles').append('<%= j render(@article) %>');
 <% if @articles.next_page %>
 	$('.pagination').raplaceWith('<%= j will_paginate(@article) %>');
 <%else%>
-	$('.pagination').empty();
+	$('.pagination').replaceWith();
 <%end%>
