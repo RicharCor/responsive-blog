@@ -4,28 +4,8 @@
 	No se encontraron artículos
 <%end%>
 
-<div class="row center-sm">
-	<% @articles.each do |article| %>
-		<div class="col-md-4 col-sm-6">
-			<div class="box relative article-height large-margin-bottom">
-				<div class="absolute no-repeat" style="background: url(<%= article.cover %>); background-size: 100% 100%; height: 100%; width: 100%;">
-				</div>
-
-				<div class="absolute article-height" style="background: rgba(0,0,0,0.6); width: 100%;">
-				</div>
-
-				<div class="relative white-text padding-to-article center-text">
-					<h1>
-						<%= link_to article.title, article %>
-					</h1>
-					<div>
-						<%= truncate(article.body.html_safe, length:30) %>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	<%end%>
-</div>
+	<div id="articles" class="row center center-md center-sm">
+		<%= render @article %>
+	</div>
 
 <%= will_paginate @articles %>

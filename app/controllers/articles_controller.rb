@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 	def index
 		article = params[:article_search]
 
-		@articles = Article.publisheds.search(article).paginate(page: params[:page], per_page: 9) #.lastest (para más recientes primero)
+		@articles = Article.publisheds.search(article).paginate(page: params[:page], per_page: 12) #.lastest (para más recientes primero)
 		@article = Article.new
 	end
 

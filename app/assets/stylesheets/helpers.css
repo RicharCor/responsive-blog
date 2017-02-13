@@ -44,6 +44,9 @@ a{
   color: #bdc3c7;
   font-size: 14px;
 }
+.center{
+	margin: 0px auto;
+}
 .left{
 	float: left; 
 }
