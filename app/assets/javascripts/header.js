@@ -12,4 +12,4 @@ document.addEventListener("turbolinks:load", function() {
     $(".header-search").focusout(function(){
        	$(".header-submit").css("color", "#bdc3c7");
 	});
-})
+});
