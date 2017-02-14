@@ -1,4 +1,3 @@
-$(document).on('turbolinks:load', function() {
 jQuery ->
 	if $('.pagination').length
 		$(window).scroll ->
@@ -7,4 +6,4 @@ jQuery ->
 				$('.pagination').text("Loading more articles")
 				$.getScript(url)
 		$(window).scroll()
-}
+
