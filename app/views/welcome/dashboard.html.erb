@@ -25,17 +25,20 @@
 		<%= submit_tag "Search" %>
 	<%end%>
 
-	<% @articles.each do |article| %>
-		<h1><%= link_to article.title, article %></h1>
-		<div><%= article.body %> 
-			<%= link_to 'Destroy', article_path(article), method: :delete, class:"red-text", data: { confirm: 'Are you sure?' } %>  
-			<% if article.may_publish? %> 
-				<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, class:"dark-green-text" %>
-			<%else%>
-				<%= link_to "Unpublish", "/articles/#{article.id}/unpublish", method: :put, class:"orange-text" %>
-			<%end%>
-		</div>
-	<%end%>
+	<div id="articles" class="row center center-md center-sm">
+		<% @articles.each do |article| %>
+			<h1><%= link_to article.title, article %></h1>
+			<div><%= article.body %> 
+				<%= link_to 'Destroy', article_path(article), method: :delete, class:"red-text", data: { confirm: 'Are you sure?' } %>  
+				<% if article.may_publish? %> 
+					<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, class:"dark-green-text" %>
+				<%else%>
+					<%= link_to "Unpublish", "/articles/#{article.id}/unpublish", method: :put, class:"orange-text" %>
+				<%end%>
+			</div>
+		<%end%>
+	</div>
+	
 	<%= will_paginate @articles, :param_name => 'articles_page' %>
 </div>
 
