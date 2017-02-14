@@ -1,5 +1,4 @@
-
-document.addEventListener("turbolinks:load", function() { 
+$(document).on('turbolinks:load', function() {
   $(document).ready(function() {
     $(".tabLink").each(function(){
       $(this).click(function(){
@@ -18,4 +17,6 @@ document.addEventListener("turbolinks:load", function() {
       $(".tabLink:eq(" + (localStorage.selectedTab - 1) + ")").click();
     }
   });
-});
+}
+
+
