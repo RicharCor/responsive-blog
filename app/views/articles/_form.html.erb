@@ -13,11 +13,16 @@
 	<div class="large-margin-bottom">
 		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo" , style:"max-width: 100%; min-height:200px;", class:"input" %>
 	</div>
-	<div>
+	<div class="row full center left-text large-margin-bottom">
 		<% if @article.categories.empty? %>
-			<label>Categorías</label>
+			<div class="col-md-12 small-margin-bottom border-bottom small-padding-bottom center-text">
+				Categorías
+			</div>
 			<% @categories.each do |category| %>
-			<div><%= check_box_tag "categories[]", category.id %> <%= category.title %></div>
+				<div class="col-md-6 col-sm-6 small-margin-top small-margin-bottom">
+					<%= check_box_tag "categories[]", category.id %>
+					<%= category.title %>
+				</div>
 			<%end%>	
 		<%end%>
 	</div>

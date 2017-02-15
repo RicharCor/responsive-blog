@@ -119,6 +119,9 @@ a{
 .large-padding-left{
 	padding-left: 15px; 
 }
+.big-padding-left{
+	padding-left: 20px;
+}
 .small-padding-right{
 	padding-right: 5px; 
 }
@@ -127,6 +130,9 @@ a{
 }
 .large-padding-right{
 	padding-right: 15px; 
+}
+.big-padding-right{
+	padding-right: 20px;
 }
 .blue{
 	background: #3498db;
