@@ -14,8 +14,8 @@
 </div>
 
 <div class="tabcontent display-none" id="articles-1">
-    <% if @articles.any? %>
-		Hay <%= @articles.count %> artículo(s) en total - <%= @articles.publisheds.count %> publicado(s)
+    <% if @articls.any? %>
+		Hay <%= @articls.count %> artículo(s) en total - <%= @articls.publisheds.count %> publicado(s)
 	<%else%>	
 		No se encontraron artículos
 	<%end%>
@@ -26,7 +26,7 @@
 	<%end%>
 
 	<div>
-		<% @articles.each do |article| %>
+		<% @articls.each do |article| %>
 			<h1><%= link_to article.title, article %></h1>
 			<div><%= article.body %> 
 				<%= link_to 'Destroy', article_path(article), method: :delete, class:"red-text", data: { confirm: 'Are you sure?' } %>  
@@ -39,12 +39,12 @@
 		<%end%>
 	</div>
 	
-	<%= will_paginate @articleas, :param_name => 'articles_page' %>
+	<%= will_paginate @articls, :param_name => 'articles_page' %>
 </div>
 
 <div class="tabcontent display-none" id="users-1">
-	        	<% if @users.any? %>
-				Hay <%= @users.count %> usuario(s) en total
+	        	<% if @useres.any? %>
+				Hay <%= @useres.count %> usuario(s) en total
 			<%else%>	
 				No se encontraron usuarios
 			<%end%>
@@ -55,18 +55,18 @@
 			<%end%>
 
 			<ul>
-			    <% @users.each do |user| %>
+			    <% @useres.each do |user| %>
 			        <li>
 			        	<%= link_to user.username, user_path(user) %> - <%= image_tag user.avatar.url %> - <%= link_to "Eliminar", user, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %>
 			        </li>
 			    <% end %>
 			</ul>
-			<%= will_paginate @useras, :param_name => 'users_page' %>
+			<%= will_paginate @useres, :param_name => 'users_page' %>
 </div>
 
 <div class="tabcontent display-none" id="categories-1">
-   	<% if @categories.any? %>
-	  Hay <%= @categories.count %> categoría(s) en total
+   	<% if @categoris.any? %>
+	  Hay <%= @categoris.count %> categoría(s) en total
 	<%else%>  
 	  No se encontraron categorías
 	<%end%>
@@ -86,7 +86,7 @@
 	  </thead>
 
 	  <tbody>
-	    <% @categories.each do |category| %>
+	    <% @categoris.each do |category| %>
 	      <tr>
 	        <td><%= category.title %></td>
 	        <td><%= category.color %></td>
@@ -97,7 +97,7 @@
 	    <%end%>
 	  </tbody>
 	</table>
-	<%= will_paginate @categorieas, :param_name => 'categories_page' %>
+	<%= will_paginate @categoris, :param_name => 'categories_page' %>
 </div>
 
 <script type="text/javascript">
