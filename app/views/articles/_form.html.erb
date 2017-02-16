@@ -1,11 +1,11 @@
-<%= form_for(Article.new, remote: true) do |f| %>
+<%= form_for(@article) do |f| %>
 	<% @article.errors.full_messages.each do |message| %>
 		<div class="red message white-text medium-text small-margin-bottom small-border-radius">
 			<%= message %>
 		</div>
 	<%end%>
 	<div class="large-margin-bottom">
-		Portada: <%= f.file_field :cover, class:"remotipart" %> 
+		Portada: <%= f.file_field :cover%> 
 	</div>
 	<div class="large-margin-bottom">
 		<%= f.text_field :title, placeholder: "Título", class:"input" %>
