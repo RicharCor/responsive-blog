@@ -39,7 +39,6 @@
 		<%end%>
 	</div>
 	
-	<%= will_paginate @articles, :param_name => 'articles_page' %>
 </div>
 
 <div class="tabcontent display-none" id="users-1">
@@ -61,7 +60,6 @@
 			        </li>
 			    <% end %>
 			</ul>
-			<%= will_paginate @users, :param_name => 'users_page' %>
 </div>
 
 <div class="tabcontent display-none" id="categories-1">
@@ -97,7 +95,6 @@
 	    <%end%>
 	  </tbody>
 	</table>
-	<%= will_paginate @categories, :param_name => 'categories_page' %>
 </div>
 
 <script type="text/javascript">
