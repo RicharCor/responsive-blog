@@ -11,24 +11,26 @@
     </head>
 
     <div id="box-global" class="margin-from-header short-transition">
-        <div class="loading-indicator" style="display: none;">
-            <%= image_tag ("loading.gif") %>
-        </div>
-        
 
-        <script type="text/javascript">
-            $(document).ajaxSend(function(event, request, settings) {
-                $('.loading-indicator').show();
-            });
+        <header>
+            <%= render "layouts/header" %> 
+        </header>
 
-            $(document).ajaxComplete(function(event, request, settings) {
-                $('.loading-indicator').hide();
-            });
-        </script>
+        <body>   
+            <div class="loading-indicator" style="display: none;">
+                <%= image_tag ("loading.gif") %>
+            </div>
 
-        <%= render "layouts/header" %>
+            <script type="text/javascript">
+                $(document).ajaxSend(function(event, request, settings) {
+                    $('.loading-indicator').show();
+                });
 
-        <body>     
+                $(document).ajaxComplete(function(event, request, settings) {
+                    $('.loading-indicator').hide();
+                });
+            </script>
+            
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
       
