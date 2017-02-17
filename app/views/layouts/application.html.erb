@@ -14,7 +14,39 @@
         <div class="loading-indicator-container" style="display: none;">
             <%= image_tag ("loading.gif"), class:"loading-indicator", style:"display: none;" %>
         </div>
-        
+
+        <style type="text/css">
+            .loading-indicator-container{
+                width: 100%;
+                max-width: 1500px;
+                height: auto;
+                background: rgba(0,0,0,0.7);
+                position: fixed;
+                top: 65;
+                z-index: 1500;
+                text-align: center; 
+            }
+            .loading-indicator{
+                padding: 5px 5px;
+                width: 65px;
+                height: 65px;
+                display: block;
+                margin: 0px auto;
+            }
+            @media screen and (max-width: 1024px){
+                .loading-indicator-container{
+                    width: 100%;
+                    height: 100px;
+                }
+                .loading-indicator{
+                    padding: 10px 10px;
+                    margin: 0px auto;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        </style>
+
         <script type="text/javascript">
             $(document).ajaxSend(function(event, request, settings) {
                 $('.loading-indicator-container').show();
