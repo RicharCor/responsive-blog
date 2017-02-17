@@ -20,6 +20,7 @@ body{
 	height: 60px;
 	max-width: 1500px;
 	z-index: 1500;
+	display: block;
 	position: fixed;
 	background: rgba(0,0,0,0.8);
 }

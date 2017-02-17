@@ -19,12 +19,12 @@
         <script type="text/javascript">
             $(document).ajaxSend(function(event, request, settings) {
                 $('.loading-indicator-container').show();
-                $('.loading-indicator').show();
+                $('#loading-indicator').show();
             });
 
             $(document).ajaxComplete(function(event, request, settings) {
                 $('.loading-indicator-container').hide();
-                $('.loading-indicator').hide();
+                $('#loading-indicator').hide();
             });
         </script>
 
