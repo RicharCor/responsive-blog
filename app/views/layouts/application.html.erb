@@ -11,18 +11,18 @@
     </head>
 
     <div id="box-global" class="margin-from-header short-transition">
-        <div id="loading-indicator" style="display: none;">
+        <div class="loading-indicator" style="display: none;">
             <%= image_tag ("loading.gif") %>
         </div>
         
 
         <script type="text/javascript">
             $(document).ajaxSend(function(event, request, settings) {
-                $('#loading-indicator').show();
+                $('.loading-indicator').show();
             });
 
             $(document).ajaxComplete(function(event, request, settings) {
-                $('#loading-indicator').hide();
+                $('.loading-indicator').hide();
             });
         </script>
 
