@@ -1,0 +1,6 @@
+$('#pagination').append('<%= j render(@category) %>');
+<% if @categories.next_page %>
+	$('.pagination').replaceWith('<%= j will_paginate(@categories) %>');
+<%else%>
+	$('.pagination').empty();
+<%end%>
