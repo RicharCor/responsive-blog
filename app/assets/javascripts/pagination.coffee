@@ -1,4 +1,5 @@
 $ ->
+	if $('.pagination').length && $('#pagination').length
 		$(window).scroll ->
 			url = $('.paginaiton .next_page').attr('href')
 			if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
