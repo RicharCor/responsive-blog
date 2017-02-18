@@ -19,45 +19,6 @@
             <%= image_tag ("loading.gif"), class:"loading-indicator circle box-shadow", style:"display: none;" %>
         </div>
 
-        <style type="text/css">
-            .loading-indicator-container{
-                width: 100%;
-                max-width: 1500px;
-                height: auto;
-                position: fixed;
-                z-index: 1001;
-                top: 90px;
-                text-align: center; 
-            }
-            .loading-indicator{
-                padding: 10px 10px;
-                width: 70px;
-                height: 70px;
-                background: #fff;
-            }
-            @media screen and (max-width: 1024px){
-                .loading-indicator-container{
-                    top: 150px;
-                }
-                .loading-indicator{
-                    padding: 10px 10px;
-                    width: 120px;
-                    height: 120px;
-                }
-            }
-        </style>
-
-        <script type="text/javascript">
-            $(document).ajaxSend(function(event, request, settings) {
-                $('.loading-indicator-container').fadeIn('fast');
-                $('.loading-indicator').fadeIn('fast');
-            });
-
-            $(document).ajaxComplete(function(event, request, settings) {
-                $('.loading-indicator-container').fadeOut('fast');
-                $('.loading-indicator').fadeOut('fast');
-            });
-        </script>
 
         <%= render "layouts/header" %>
 

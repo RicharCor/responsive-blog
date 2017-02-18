@@ -35,6 +35,21 @@ a{
   color: #bdc3c7;
   font-size: 14px;
 }
+            .loading-indicator-container{
+                width: 100%;
+                max-width: 1500px;
+                height: auto;
+                position: fixed;
+                z-index: 1001;
+                top: 90px;
+                text-align: center; 
+            }
+            .loading-indicator{
+                padding: 10px 10px;
+                width: 70px;
+                height: 70px;
+                background: #fff;
+            }
 
 
 @media screen and (max-width: 1024px) {
@@ -57,4 +72,13 @@ a{
 	  color: #bdc3c7;
 	  font-size: 30px;
 	}
+                .loading-indicator-container{
+                    top: 150px;
+                }
+                .loading-indicator{
+                    padding: 10px 10px;
+                    width: 120px;
+                    height: 120px;
+                }
+            }
 }
