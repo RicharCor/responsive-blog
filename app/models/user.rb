@@ -20,6 +20,13 @@ class User < ApplicationRecord
 	has_attached_file :avatar
 	validates_attachment_content_type :avatar, { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
+	extend FriendlyId
+	friendly_id :username, use: :slugged
+
+	def should_generate_new_friendly_id?
+	   new_record? || slug.nil? || slug.blank? || username_changed?
+	end
+
 	def self.search(user_search)
 		search_user = "%#{user_search}%"
 

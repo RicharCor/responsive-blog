@@ -5,8 +5,11 @@ class Category < ApplicationRecord
 	has_many :has_categories, :dependent => :delete_all
 	has_many :articles, through: :has_categories
 
-	def to_param
-	  title
+	extend FriendlyId
+		friendly_id :title, use: :slugged
+
+	def should_generate_new_friendly_id?
+	 	title_changed?
 	end
 
 	def self.search(category_search)

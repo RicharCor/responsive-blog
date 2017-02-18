@@ -8,7 +8,7 @@
 
 <div class="row center-md center-sm relative">
 	<% @article.comments.each do |comment| %>
-		<div class="col-md-7 col-sm-11 comment-container white large-margin-bottom">
+		<div class="col-md-7 col-sm-11 comment-container white large-margin-bottom box-shadow">
 			<% if comment.user.nil? %>
 				<li class="list-none">		
 					<% if current_user.is_admin? %>

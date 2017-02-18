@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	end	
 
 	def destroy
-	    User.find(params[:id]).destroy
+	    User.friendly.find(params[:id]).destroy
 	    flash[:notice] = "User deleted successfully"
 	    redirect_to users_url
   	end
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
    	private
 
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
+    end
+
+    def user_params
+      params.require(:user).permit(:avatar, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :slug)
     end
 end

@@ -1,11 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:update, :destroy, :show] #:show
+  before_action :set_comment, only: [:update, :destroy] #:show
   before_action :set_article
   before_action :authenticate_user!
-
-  def show
-    
-  end
 
   # POST /comments
   # POST /comments.json
@@ -34,7 +30,7 @@ class CommentsController < ApplicationController
 
   private
     def set_article
-      @article = Article.find(params[:article_id])
+      @article = Article.friendly.find(params[:article_id])
     end
 
     # Use callbacks to share common setup or constraints between actions.

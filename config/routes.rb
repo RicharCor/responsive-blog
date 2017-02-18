@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-	resources :categories, param: :title
+	resources :categories
 	resources :articles do
   		resources :comments, only: [:create, :destroy]
 	end

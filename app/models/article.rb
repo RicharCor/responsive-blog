@@ -16,6 +16,13 @@ class Article < ApplicationRecord
 	has_attached_file :cover
 	validates_attachment_content_type :cover, { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
+	extend FriendlyId
+		friendly_id :title, use: :slugged
+
+	def should_generate_new_friendly_id?
+	   new_record? || slug.nil? || slug.blank? || title_changed?
+	end
+
 	def update_visits_count
 	    self.update(visits_count: self.visits_count + 1)
 	end
