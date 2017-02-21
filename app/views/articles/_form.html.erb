@@ -4,14 +4,21 @@
 			<%= message %>
 		</div>
 	<%end%>
+	<% if @article.cover? %>
+		<div class="large-margin-bottom">
+			<%= image_tag @article.cover.url, class:"cover" %>
+		</div>
+	<%end%>
+
 	<div class="large-margin-bottom">
 		Portada: <%= f.file_field :cover%> 
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.text_field :title, placeholder: "Título", class:"input" %>
+		<%= f.text_field :title, placeholder: "Título", id: 'myTextarea', class:"input" %>
+		<p id="counter"></p>
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo" , style:"max-width: 100%; min-height:200px;", class:"input" %>
+		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo" , style:"min-height:200px;", class:"input" %>
 	</div>
 	<div class="row full center left-text large-margin-bottom">
 		<% if @article.categories.empty? %>
@@ -28,6 +35,6 @@
 	</div>
 
 	<div>
-		<%= f.submit "Guardar", class:"btn blue small-border-radius" %>
+		<%= f.submit "Guardar", class:"save-article btn blue small-border-radius" %>
 	</div>
 <%end%>

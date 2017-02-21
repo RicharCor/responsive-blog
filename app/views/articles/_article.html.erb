@@ -1,18 +1,23 @@
 <% @articles.each do |article| %>
-	<div class="col-md-4 col-sm-6">
-		<div class="box relative article-height large-margin-bottom">
-			<div class="absolute no-repeat" style="background: url(<%= article.cover %>); background-size: 100% 100%; height: 100%; width: 100%;">
+	<div class="col-md-4 col-sm-10">
+		<div class="row relative auto-height large-margin-bottom box-shadow">
+
+
+
+			<div class="col-md-12 col-sm-12 relative no-padding">
+				<div class="article-height absolute left block full article-cover-height" style="background: rgba(0,0,0,0.4);">
+				</div>
+
+				<div class="no-repeat full article-cover-height" style="background: url(<%= article.cover %>); background-height: 100%; background-position: center; background-repeat: no-repeat;">
+				</div>
 			</div>
 
-			<div class="absolute article-height" style="background: rgba(0,0,0,0.6); width: 100%;">
-			</div>
-
-			<div class="relative white-text padding-to-article center-text">
-				<h1>
+			<div class="col-md-12 col-sm-12 padding-to-article center-text white">
+				<h2>
 					<%= link_to article.title, article %>
-				</h1>
+				</h2>
 				<div>
-					<%= truncate(article.body.html_safe, length:30) %>
+					<%= truncate(article.body.html_safe, length:30, class:"right") %>
 				</div>
 			</div>
 

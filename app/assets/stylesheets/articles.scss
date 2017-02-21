@@ -1,6 +1,12 @@
-.article-height{
-	height: 300px;
+.article-cover-height{
+	height: 200px;
 }
 .padding-to-article{
 	padding: 20px 20px;
+}
+
+@media screen and (max-width: 1024px) {
+	.article-cover-height{
+		height: 300px;
+	}
 }
