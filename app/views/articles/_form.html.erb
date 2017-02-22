@@ -14,11 +14,11 @@
 		Portada: <%= f.file_field :cover%> 
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.text_field :title, placeholder: "Título", id: 'myTextarea', class:"input" %>
-		<p id="counter" class="short-transition left" style="color: green;">Characters left: 50</p>
+		<%= f.text_field :title, placeholder: "Título", id: 'myTextarea' %>
+		<p id="counter" class="short-transition right" style="color: green;">Characters left: 50</p>
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo" , style:"min-height:200px;", class:"input" %>
+		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo", style:"min-height: 100px !important;" %>
 	</div>
 	<div class="row full center left-text large-margin-bottom">
 		<% if @article.categories.empty? %>
@@ -38,3 +38,30 @@
 		<%= f.submit "Guardar", class:"save-article btn blue small-border-radius" %>
 	</div>
 <%end%>
+
+<script type="text/javascript">
+	$('document').ready(function() {
+		$('#myTextarea').keyup(function () {
+		    var left = 50 - $(this).val().length;
+		    $('#counter').text('Characters left: ' + left);
+
+		    if (left < 0) {
+		    	$("#counter").css('color', 'red'); 
+		    	$(".save-article").addClass("grey"); 
+		    	$(".save-article").attr('disabled', 'disabled');
+		    	$( ".alert" ).text( "Si sobrepasas el límite de caracteres no podrás crear el artículo" );
+		    } else { 
+	        	$("#counter").css('color', 'green'); 
+		    	$(".save-article").removeClass("grey");  
+		    	$(".save-article").removeAttr('disabled'); 
+		    };
+
+		    if (left < 6 && left > -1) {
+		    	$("#counter").css('color', 'orange'); 
+
+		    } else {
+		    	$("#counter").css('color', 'none'); 
+		    };
+		});
+	});
+</script>
