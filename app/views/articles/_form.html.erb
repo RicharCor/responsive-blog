@@ -46,7 +46,8 @@
 		    $('#counter').text('Characters left: ' + left);
 
 		    if (left < 0) {
-		    	$("#counter").css('color', 'red'); 
+		    	$("#counter").css('color', 'red');
+		    	$(".save-article").removeClass("blue");  
 		    	$(".save-article").addClass("grey"); 
 		    	$(".save-article").attr('disabled', 'disabled');
 		    	$( ".alert" ).text( "Si sobrepasas el límite de caracteres no podrás crear el artículo" );
