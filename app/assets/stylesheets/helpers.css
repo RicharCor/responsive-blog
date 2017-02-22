@@ -127,6 +127,9 @@
 .yellow{
 	background: #f1c40f;
 }
+.grey{
+	background: #7f8c8d;
+}
 .small-btn{
 	padding:5px 10px;
 }
@@ -212,7 +215,7 @@
 	color: #2980b9;
 }
 .yellow-text{
-	background: #f1c40f;
+	color: #f1c40f;
 }
 .orange-text{
 	color: #e67e22;
