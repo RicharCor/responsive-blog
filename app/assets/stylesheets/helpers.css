@@ -339,3 +339,9 @@
 .pointer{
 	cursor: pointer;
 }
+.background-center{
+	background-position: center;
+}
+.background-unique{
+	background-repeat: no-repeat;
+} 
