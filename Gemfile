@@ -33,7 +33,7 @@ gem 'aasm'
 gem 'will_paginate'
 gem 'trix'
 gem 'friendly_id'
-gem 'remotipart', github: "urielhdz/remotipart"
+# gem 'remotipart', github: "urielhdz/remotipart"
 # gem 'aws-sdk', '2.3'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 
