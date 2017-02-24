@@ -14,8 +14,8 @@
 		Portada: <%= f.file_field :cover%> 
 	</div>
 	<div class="large-margin-bottom">
-		<%= f.text_field :title, placeholder: "Título", id: 'myTextarea' %>
-		<p id="counter" class="short-transition right"></p>
+		<%= f.text_field :title, placeholder: "Título", id: 'article-title' %>
+		<p id="article-character-counter" class="short-transition right"></p>
 	</div>
 	<div class="large-margin-bottom">
 		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo", style:"min-height: 100px !important;" %>
