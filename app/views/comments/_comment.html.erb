@@ -45,6 +45,13 @@
 									<% if comment.body.length > 400 %>
 									    <%= truncate(comment.body, length: 400) %>
 									    <%= link_to 'Read more', '', class: "read-more-#{comment.id} block center-text border-top medium-margin-top small-padding-top" %>
+
+									    <script type="text/javascript">
+									    	$('.read-more-<%= comment.id %>').on('click', function(e) {
+												e.preventDefault()
+												$(this).parent().html('<%= escape_javascript comment.body %>');
+											});
+									    </script>
 									<% else %>
 									    <%= comment.body %>
 									<% end %>
