@@ -1,5 +1,13 @@
-//$(".alert").html("Comment was successfully created");//
+// Esto coloca un notice al crear el comentario
+//$('#notices').append("<div class='notice'><i class='fa fa-check'></i><%= alert %>fdgdfdff<div class='close-notice right pointer'><i class='fa fa-times'></i></div></div>");
+//$('document').ready(function() {
+//	$('.notice').delay(3000).slideUp('fast');
+//});
 
 $('#comments-box').html("<%= j render @comment %>");
+$('#caca_<%= @comment.id %>').addClass('yellow').delay(400).queue(function(){
+   $(this).removeClass('yellow') 
+});
+
 $('#comment_title').val("");
 $('#comment_body').val("");

@@ -125,7 +125,10 @@
 	background: #fff;
 }
 .yellow{
-	background: #f1c40f;
+	background: #ffffa3;
+}
+.dark-yellow{
+	background: #f5d76e;
 }
 .grey{
 	background: #7f8c8d;
@@ -203,9 +206,12 @@
 	color: #27ae60;
 }
 .red-text{
+	color: red;
+}
+.red-flat-text{
 	color: #d04343;
 }
-.darl-red-text{
+.dark-red-text{
 	color: #c0392b;
 }
 .blue-text{
@@ -344,4 +350,7 @@
 }
 .background-unique{
 	background-repeat: no-repeat;
+}
+.hidden{
+	overflow: hidden;
 } 

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment.article, notice: 'Comment was successfully created' }
-        format.js  
+        format.js
       else
         format.html { redirect_to @article, alert: 'Comment wasn´t created' }
       end
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @article, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js
     end
   end
 

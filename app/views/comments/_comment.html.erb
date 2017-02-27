@@ -8,11 +8,11 @@
 
 <div class="row center-md center-sm relative">
 	<% @article.comments.each do |comment| %>
-		<div class="col-md-7 col-sm-11 comment-container white large-margin-bottom box-shadow">
+		<div id="caca_<%= comment.id %>" class="col-md-7 col-sm-11 comment-container white short-transition large-margin-bottom box-shadow">
 			<% if comment.user.nil? %>
 				<li class="list-none">		
 					<% if current_user.is_admin? %>
-						<p class="red_text">Comentario eliminado</p> - <%= link_to "Delete", [@article, comment], method: :delete, class:"red-text" %>
+						<p class="red_text">Comentario eliminado</p> - <%= link_to "Delete", [@article, comment], remote: true, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %>
 					<%end%>
 				</li>
 			<%else%>
@@ -29,7 +29,7 @@
 								<p class="right-text small-margin-top"><%= time_ago_in_words(comment.created_at) %> ago</p>
 								<% if user_signed_in? %>
 									<% if current_user.is_admin? or comment.user == current_user %>
-										<p class="right no-padding small-margin-top"><%= link_to "Eliminar", [@article, comment], method: :delete, class:"red-text" %></p>
+										<p class="right no-padding small-margin-top"><%= link_to "Eliminar", [@article, comment], remote: true, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %></p>
 									<%end%>
 								<%end%>
 							</div>
@@ -40,25 +40,15 @@
 								</h4>
 							</div>
 
-							<div class="col-md-12 col-sm-12 left-text popis">
-								<p class="small-padding-top comment-body">
-									<div>
-									  	<% if comment.body.length > 400 %>
-									    	<%= truncate(comment.body, length: 400) %>
-									    	<%= link_to 'Read more', '', class: "read-more-#{comment.id} block center-text border-top medium-margin-top small-padding-top" %>
-
-									    	<script>
-									      		$('.read-more-<%= comment.id %>').on('click', function(e) {
-									        		e.preventDefault()
-									        		$(this).parent().html('<%= escape_javascript comment.body %>')
-									      		})
-									    	</script>
-
-									  	<% else %>
-									    	<%= comment.body %>
-									  	<% end %>
-									<div>
-								</p>
+							<div class="col-md-12 col-sm-12 left-text small-padding-top">
+								<div>
+									<% if comment.body.length > 400 %>
+									    <%= truncate(comment.body, length: 400) %>
+									    <%= link_to 'Read more', '', class: "read-more-#{comment.id} block center-text border-top medium-margin-top small-padding-top" %>
+									<% else %>
+									    <%= comment.body %>
+									<% end %>
+								<div>
 							</div>
 						</div>
 					</div>

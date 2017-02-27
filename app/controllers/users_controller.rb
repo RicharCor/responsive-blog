@@ -3,14 +3,12 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:show, :index]
   
   	def index
-      user = params[:user_search]
-
-  	  @users = User.search(user)
- 	 end
+        user = params[:user_search]
+        @users = User.search(user)
+ 	end
 
   	def show
- 	    @articles = @user.articles
-      @comments = @user.comments
+ 	    @articles = @user.articles_with_comments
 	end	
 
 	def destroy
@@ -22,10 +20,10 @@ class UsersController < ApplicationController
    	private
 
     def set_user
-      @user = User.friendly.find(params[:id])
+        @user = User.friendly.find(params[:id])
     end
 
     def user_params
-      params.require(:user).permit(:avatar, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :slug)
+        params.require(:user).permit(:avatar, :first_name, :last_name, :username, :email, :password, :password_confirmation, :remember_me, :slug)
     end
 end

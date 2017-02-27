@@ -10,9 +10,11 @@
 	<div>
 		<%= article.body %>
 	</div>
-<%end%>
-<% @comments.each do |comment| %>
-		<li>		
-			<b><%= comment.title %></b> - <%= comment.body %> - <%= comment.user.username %> <%= time_ago_in_words(comment.created_at) %> 
-		</li>
+	<% article.comments.each do |comment| %>
+		<% if comment.user == @user %>
+			<li>		
+				<b><%= comment.title %></b> - <%= comment.body %> - <%= comment.user.username %> <%= time_ago_in_words(comment.created_at) %> 
+			</li>
+		<%end%>
+	<%end%>
 <%end%>

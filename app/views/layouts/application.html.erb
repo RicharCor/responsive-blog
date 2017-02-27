@@ -16,14 +16,36 @@
 
     <div id="box-global" class="margin-from-header short-transition">
         <div class="loading-indicator-container full fixed center-text" style="display: none;">
-            <%= image_tag ("loading.gif"), class:"loading-indicator circle box-shadow white", style:"display: none;" %>
+            <%= image_tag ("loading5.gif"), class:"loading-indicator circle box-shadow white", style:"display: none; z-index: 2000;" %>
         </div>
 
         <%= render "layouts/header" %>
 
-        <body>     
-            <div class="notice"><%= notice %></div>
-            <div class="alert"><%= alert %></div>
+        <body>
+            <div id="notices" class="fixed full">
+                <% if notice %>
+                    <div class="notice">
+                        <i class="fa fa-check medium-margin-right"></i>
+                        <%= notice %>
+                        <div class="close-notice right pointer">
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                <%end%>    
+            </div>     
+
+
+            <div id="alerts" class="fixed full">
+                <% if alert %>
+                    <div class="alert red-flat-text">
+                        <i class="fa fa-warning medium-margin-right"></i>
+                        <%= alert %>
+                        <div class="close-alert right pointer">
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
       
             <%= yield %>
         </body>
