@@ -5,13 +5,15 @@ document.addEventListener("turbolinks:load", function() {
 		var input = $('#article-title');
 		var characters = $(input).val().length;
     	var count = 50 - characters
+    	var btn = $(".save-article");
+
     	var counter = $('#article-character-counter');
     	$('#article-character-counter').text('Characters left: ' + count);
 
         if (count < 0) {
 			counter.css('color', 'red');
-			$(".save-article").addClass("grey"); 
-			$(".save-article").attr('disabled', 'disabled');
+			btn.addClass("grey"); 
+			btn.attr('disabled', 'disabled');
 			$( ".alert" ).text( "Si sobrepasas el límite de caracteres no podrás guardar el artículo" ); 
 		} else {
 		    counter.css('color', 'green');
@@ -28,19 +30,24 @@ document.addEventListener("turbolinks:load", function() {
 			var characters = $(this).val().length;
 			var left = 50 - characters
 			var counter = $('#article-character-counter');
+			var btn = $(".save-article");
 			$('#article-character-counter').text('Characters left: ' + left);
 
 			if (left < 0) {
 			    counter.css('color', 'red');
-			    $(".save-article").removeClass("blue");  
-			    $(".save-article").addClass("grey"); 
-			    $(".save-article").attr('disabled', 'disabled');
-			    $( ".alert" ).text( "Si sobrepasas el límite de caracteres no podrás guardar el artículo" );
+			    btn.removeClass("blue");  
+			    btn.addClass("grey"); 
+			    btn.attr('disabled', 'disabled');
+			    $('#alerts').html("<div class='alert red-flat-text'><i class='fa fa-times-circle large-margin-right'></i>Si sobrepasas el límite de caracteres no podrás guardar el artículo<div class='close-alert right pointer'><i class='fa fa-times'></i></div></div>");
+			    $('document').ready(function() {
+			    	$('.alert').hide().slideDown('fast');
+					$('.alert').delay(3500).slideUp('fast');
+				});
 			} else { 
 		        counter.css('color', 'green'); 
-			    $(".save-article").removeClass("grey");
-			    $(".save-article").addClass("blue");  
-			    $(".save-article").removeAttr('disabled'); 
+			    btn.removeClass("grey");
+			    btn.addClass("blue");  
+			    btn.removeAttr('disabled'); 
 			};
 
 			if (left < 6 && left > -1) {
