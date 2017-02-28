@@ -72,7 +72,7 @@ a{
 .article-body{
 	height: auto;
 	max-height: 65px !important;
-	white-space: nowrap; 
+	//* white-space: nowrap; *//
 }
 .article-body h1, .article-body h1 strong, .article-body div, .article-body pre{
 	font-size: 16px !important;
@@ -80,10 +80,8 @@ a{
 .article-body ul li, .article-body ol li{
 	font-size: 15px !important;
 }
-.loading-more{
+.loading-more img{
 	width: 120px;
-	margin-top: -30px;
-	margin-bottom: -50px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -127,9 +125,7 @@ a{
 		padding: 30px 40px;  
 		border: 2px solid #ebccd1; 
 	}
-	.cacas{
+	.loading-more img{
 		width: 150px;
-		margin-top: -30px;
-		margin-bottom: -60px;
 	}
 }

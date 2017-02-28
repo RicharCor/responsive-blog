@@ -353,4 +353,7 @@
 }
 .hidden{
 	overflow: hidden;
+}
+.inside-list{
+	list-style-position: inside;
 } 
