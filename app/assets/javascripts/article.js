@@ -14,7 +14,7 @@ document.addEventListener("turbolinks:load", function() {
 			counter.css('color', 'red');
 			btn.addClass("grey"); 
 			btn.attr('disabled', 'disabled');
-			$( ".alert" ).text( "Si sobrepasas el límite de caracteres no podrás guardar el artículo" ); 
+			$('#alerts').html("<div class='alert red-flat-text'><i class='fa fa-times-circle large-margin-right'></i>Si sobrepasas el límite de caracteres no podrás guardar el artículo<div class='close-alert right pointer'><i class='fa fa-times'></i></div></div>"); 
 		} else {
 		    counter.css('color', 'green');
 		};

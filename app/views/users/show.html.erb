@@ -10,6 +10,9 @@
 	<div>
 		<%= article.body %>
 	</div>
+	<div>
+		<%= @user.username %> ha comentado <%= article.comments.count %> veces en un artículo
+	</div>
 	<% article.comments.each do |comment| %>
 		<% if comment.user == @user %>
 			<li>		
