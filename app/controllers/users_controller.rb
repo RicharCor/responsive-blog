@@ -7,8 +7,9 @@ class UsersController < ApplicationController
         @users = User.search(user)
  	end
 
-  	def show
- 	    @articles = @user.articles_with_comments
+  def show
+    @articles = @user.articles
+    @comments = @user.comments
 	end	
 
 	def destroy

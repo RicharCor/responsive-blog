@@ -5,19 +5,12 @@
 <ul>
     <li>Name: <%= @user.first_name %></li>
 </ul>
+
+<h3>Actividad</h3>
+<%= @user.username %> a comentado <%= @articles.count %> veces
+
 <% @articles.each do |article| %>
-	<h2><%= link_to article.title, article %></h1>
 	<div>
-		<%= article.body %>
+		<%= @user.username %> comentó el artículo <%= link_to article.title, article %>
 	</div>
-
-		<%= @user.username %> ha comentado <%= article.comments.count %> veces en un artículo
-
-	<% article.comments.each do |comment| %>
-		<% if comment.user == @user %>
-			<li>		
-				<b><%= comment.title %></b> - <%= comment.body %> - <%= comment.user.username %> <%= time_ago_in_words(comment.created_at) %> 
-			</li>
-		<%end%>
-	<%end%>
 <%end%>
