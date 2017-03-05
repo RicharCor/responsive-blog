@@ -1,16 +1,60 @@
+<div class="row center-md full mega-padding black white-text ">
+		<div class="col-md-9 flex center-items large-margin-top large-margin-bottom">
+			<%= image_tag @user.avatar, class:"circle left-text large-margin-right", style:"width: 100px; height: 100px;" %>
+			<p style="font-size: 50px;"><%= @user.username %></p>	
+		</div>
+
+		<div class="center-text pistache white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 10px; right: 200px;">
+			<% if @comments.count > 1 or 0 %>
+				<p style="font-size: 26px;"><%= @comments.count %></p>
+				<p style="font-size: 13px;">Comentarios</p>
+				<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+			<%else%>
+				<p style="font-size: 26px;"><%= @comments.count %></p>
+				<p style="font-size: 13px;">Comentarios</p>
+				<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+			<%end%>	
+		</div>
+
+		<div class="center-text pink white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 60px; right: 280px;">
+			<% if @articles.count > 1 or 0 %>
+				<p style="font-size: 26px;"><%= @articles.count %></p>
+				<p style="font-size: 13px;">Artículos</p>
+				<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+			<%else%>
+				<p style="font-size: 26px;"><%= @articles.count %></p>
+				<p style="font-size: 13px;">Artículo</p>
+				<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+			<%end%>	
+		</div>
+</div>
+
 <% if @user == current_user %>
 	<h1>Mi perfíl</h1>
 <%end%>
-<h2><%= @user.email %></h1>
-<ul>
-    <li>Name: <%= @user.first_name %></li>
-</ul>
 
-<h3>Actividad</h3>
-<%= @user.username %> a comentado <%= @articles.count %> veces
-
-<% @articles.each do |article| %>
-	<div>
-		<%= @user.username %> comentó el artículo <%= link_to article.title, article %>
+<h3 class="center-text">Actividad</h3>
+<div class="row">
+	<div class="col-md-6">
+		<div>
+			<% @articles.each do |article| %>
+				<div>
+					<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
+				</div>
+			<%end%>	
+		</div>
 	</div>
-<%end%>
+
+	<div class="col-md-6">
+		<% @artiicles.each do |article| %>
+			<% article.comments.where(user: @user).each do |comment| %>
+				<div>
+					<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
+				</div>
+			<%end%>		
+		<%end%>
+	</div>
+</div>
+
+
+

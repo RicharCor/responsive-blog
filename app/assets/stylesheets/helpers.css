@@ -49,6 +49,18 @@
 .large-margin-right{
 	margin-right: 15px; 
 }
+.small-padding{
+	padding: 5px;
+}
+.medium-padding{
+	padding: 10px;
+}
+.large-padding{
+	padding: 15px;
+}
+.mega-padding{
+	padding: 20px;
+}
 .small-padding-top{
 	padding-top: 5px; 
 }
@@ -120,6 +132,12 @@
 }
 .dark-orange{
 	background: #d35400;
+}
+.pink{
+	background: #e91e63;
+}
+.black{
+	background: #242427;
 }
 .white{
 	background: #fff;
@@ -357,3 +375,14 @@
 .inside-list{
 	list-style-position: inside;
 } 
+
+/* Flexbox */
+.flex{
+	display: flex;
+}
+.center-items{
+	align-items: center;
+}
+.justify-content{
+	justify-content: center;
+}

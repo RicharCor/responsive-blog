@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @articles = @user.articles
+    @artiicles= Article.all
     @comments = @user.comments
 	end	
 
