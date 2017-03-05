@@ -140,7 +140,7 @@
 	background: #242427;
 }
 .white{
-	background: #fff;
+	background: #fff !important;
 }
 .yellow{
 	background: #ffffa3;
@@ -214,6 +214,12 @@
 .message{
 	padding: 5px 10px;
 }
+
+/* Textos */
+
+.black-text{
+	color: #000;
+}
 .white-text{
 	color: #fff;
 }
@@ -247,18 +253,6 @@
 .dark-orange-text{
 	color: #d35400;
 }
-.small-text{
-	font-size: 12px;
-}
-.medium-text{
-	font-size: 14px;
-}
-.large-text{
-	font-size: 16px;
-}
-.big-text{
-	font-size: 18px !important;
-}
 .left-text{
 	text-align: left;
 }
@@ -267,6 +261,21 @@
 }
 .center-text{
 	text-align: center;
+}
+.title{
+	font-size: 50px;
+}
+.subtitle{
+	font-size: 30px;
+}
+.big-text{
+	font-size: 20px;
+}
+.normal-text{
+	font-size: 14px;
+}
+.small-text{
+	font-size: 12px;
 }
 .no-padding{
 	padding: 0px 0px;
@@ -377,6 +386,7 @@
 } 
 
 /* Flexbox */
+
 .flex{
 	display: flex;
 }

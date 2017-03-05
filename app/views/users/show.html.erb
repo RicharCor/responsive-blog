@@ -1,60 +1,101 @@
-<div class="row center-md full mega-padding black white-text ">
-		<div class="col-md-9 flex center-items large-margin-top large-margin-bottom">
-			<%= image_tag @user.avatar, class:"circle left-text large-margin-right", style:"width: 100px; height: 100px;" %>
-			<p style="font-size: 50px;"><%= @user.username %></p>	
-		</div>
-
-		<div class="center-text pistache white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 10px; right: 200px;">
-			<% if @comments.count > 1 or 0 %>
-				<p style="font-size: 26px;"><%= @comments.count %></p>
-				<p style="font-size: 13px;">Comentarios</p>
-				<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
-			<%else%>
-				<p style="font-size: 26px;"><%= @comments.count %></p>
-				<p style="font-size: 13px;">Comentarios</p>
-				<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
-			<%end%>	
-		</div>
-
-		<div class="center-text pink white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 60px; right: 280px;">
-			<% if @articles.count > 1 or 0 %>
-				<p style="font-size: 26px;"><%= @articles.count %></p>
-				<p style="font-size: 13px;">Artículos</p>
-				<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
-			<%else%>
-				<p style="font-size: 26px;"><%= @articles.count %></p>
-				<p style="font-size: 13px;">Artículo</p>
-				<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
-			<%end%>	
-		</div>
-</div>
-
-<% if @user == current_user %>
-	<h1>Mi perfíl</h1>
-<%end%>
-
-<h3 class="center-text">Actividad</h3>
-<div class="row">
-	<div class="col-md-6">
+<div class="row center-md center-xs full mega-padding black white-text ">
+	<div class="col-md-10 col-xs-11 flex center-items large-margin-top large-margin-bottom">
+		<%= image_tag @user.avatar, class:"circle left-text large-margin-right", style:"width: 100px; height: 100px;" %>
 		<div>
-			<% @articles.each do |article| %>
-				<div>
-					<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
-				</div>
+			<p class="title"><%= @user.username %></p>
+			<% if @user == current_user %>
+				<p class="big-font left">(Mi perfíl)</p>
 			<%end%>	
 		</div>
+
 	</div>
 
-	<div class="col-md-6">
+	<div class="center-text pistache white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 10px; right: 150px;">
+		<% if @comments.count > 1 or 0 %>
+			<p style="font-size: 26px;"><%= @comments.count %></p>
+			<p style="font-size: 13px;">Comentarios</p>
+			<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+		<%else%>
+			<p style="font-size: 26px;"><%= @comments.count %></p>
+			<p style="font-size: 13px;">Comentarios</p>
+			<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+		<%end%>	
+	</div>
+
+	<div class="center-text pink white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 60px; right: 230px;">
+		<% if @articles.count > 1 or 0 %>
+			<p style="font-size: 26px;"><%= @articles.count %></p>
+			<p style="font-size: 13px;">Artículos</p>
+			<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+		<%else%>
+			<p style="font-size: 26px;"><%= @articles.count %></p>
+			<p style="font-size: 13px;">Artículo</p>
+			<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+		<%end%>	
+	</div>
+</div>
+
+<div class="row center-md center-xs left-text">
+	<div class="row col-md-10 col-xs-11 no-padding">
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text white" id="user-articles"><i class="fa fa-file-text-o"></i></a>
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text" id="user-comments"><i class="fa fa-commenting-o"></i></a>
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text" id="user-info"><i class="fa fa-user-o"></i></a>
+	</div>
+
+
+	<div class="row tabcontent col-md-10 col-xs-11 white justify-content" id="user-articles-1">
+		<p class="big-text full center-text">Artículos del usuario</p>
+		<% @articles.each do |article| %>
+			<div class="col-md-6 col-xs-6">
+				<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
+			</div>
+		<%end%>	
+	</div>
+
+	<div class="row tabcontent display-none col-md-10 col-xs-11 white" id="user-comments-1">
+		<p class="big-text full center-text">Comentarios del usuario</p>
 		<% @artiicles.each do |article| %>
 			<% article.comments.where(user: @user).each do |comment| %>
-				<div>
+				<div class="col-md-6 col-xs-6">
 					<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
+					<%= comment.title %>
 				</div>
 			<%end%>		
 		<%end%>
 	</div>
+
+	<div class="row tabcontent display-none col-md-10 col-xs-11 mega-padding white justify-content" id="user-info-1">
+		<div class="col-md-12 col-xs-12">
+			<p class="big-text center-text">Informacion del usuario</p>
+			<%= @user.first_name %>
+			<%= @user.last_name %>
+		</div>
+	</div>		
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".tabLink").each(function(){
+      $(this).click(function(){
+        localStorage.selectedTab = $(this).index() + 1;
+        tabeId = $(this).attr('id');
+        $(".tabLink").removeClass("white");
+        $(this).addClass("white");
+        $(".tabLink").addClass("white-text");
+        $(this).removeClass("white-text");
+        $(".tabcontent").addClass("display-none");
+        $("#"+tabeId+"-1").removeClass("display-none")   
+        return false;     
+      });
+    });  
+      
+    // search for local storage
+    if (localStorage.selectedTab) {
+      $(".tabLink:eq(" + (localStorage.selectedTab - 1) + ")").click();
+    }
+  });
+</script>
+
 
 
 
