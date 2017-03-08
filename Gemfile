@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-script-source', '1.8.0'
 gem 'devise'
-
+gem 'font-awesome-rails'
 gem 'jquery-turbolinks'
 gem 'paperclip'
 gem 'aasm'
