@@ -1,5 +1,5 @@
 <div class="row center-md center-xs full mega-padding black white-text ">
-	<div class="col-md-10 col-xs-11 flex popo large-margin-bottom">
+	<div class="col-md-10 col-xs-11 flex break-word popo large-margin-bottom">
 		<%= image_tag @user.avatar, class:"circle left-text large-margin-right box-100" %>
 		<div>
 			<p class="caca"><%= @user.username %></p>
@@ -10,7 +10,7 @@
 
 	</div>
 
-	<div class="center-text pistache white-text circle user-comments medium-padding absolute box-115">
+	<div class="center-text pistache white-text circle user-comments medium-padding box-115">
 		<% if @comments.count > 1 or 0 %>
 			<p style="font-size: 26px;"><%= @comments.count %></p>
 			<p style="font-size: 13px;">Comentarios</p>
@@ -22,7 +22,7 @@
 		<%end%>	
 	</div>
 
-	<div class="center-text pink white-text circle medium-padding user-articles absolute box-115">
+	<div class="center-text pink white-text circle medium-padding user-articles box-115">
 		<% if @articles.count > 1 or 0 %>
 			<p style="font-size: 26px;"><%= @articles.count %></p>
 			<p style="font-size: 13px;">Artículos</p>
@@ -97,18 +97,27 @@
 
  	if ($(window).width() < 450) {
 	    $('.caca').addClass('subtitle');
-	    $('.popo').addClass('margin-right-20');
 	    $('.popo img').addClass('margin-bottom-20');
-	    $('.user-comments').addClass('top-65');
-		$('.user-comments').addClass('right-10');
-		$('.user-articles').addClass('top-65');
-		$('.user-articles').addClass('right-110');
+
+	    $('.user-comments').addClass('block');
+	    $('.user-comments').addClass('large-margin-left');
+	    $('.user-comments').addClass('large-margin-right');
+
+		$('.user-articles').addClass('block');
+		$('.user-articles').addClass('large-margin-left');
+	    $('.user-articles').addClass('large-margin-right');
+
 	} else {
+
 		$('.popo').addClass('center-items');
 		$('.popo').addClass('large-margin-top');
 	    $('.caca').addClass('title');
+
+	    $('.user-comments').addClass('absolute');
 		$('.user-comments').addClass('top-10');
 		$('.user-comments').addClass('right-150');
+
+		$('.user-articles').addClass('absolute');
 		$('.user-articles').addClass('top-60');
 		$('.user-articles').addClass('right-230');
 	}

@@ -419,3 +419,7 @@
 .right-110{ right: 110px; }
 .right-150{ right: 150px; }
 .right-230{ right: 230px; }
+
+/* Word break */
+
+.break-word{ word-break: break-word ; }
