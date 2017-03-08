@@ -86,46 +86,27 @@ a{
 
 @media screen and (max-width: 1024px) {
 	.margin-from-header{
-		margin-top: 100px !important;
+		margin-top: 80px !important;
 	}
 	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 	  color: #bdc3c7;
-	  font-size: 30px;
+	  font-size: 16px;
 	}
 	::-moz-placeholder { /* Firefox 19+ */
 	  color: #bdc3c7;
-	  font-size: 30px;
+	  font-size: 16px;
 	}
 	:-ms-input-placeholder { /* IE 10+ */
 	  color: #bdc3c7;
-	  font-size: 30px;
+	  font-size: 16px;
 	}
 	:-moz-placeholder { /* Firefox 18- */
 	  color: #bdc3c7;
-	  font-size: 30px;
+	  font-size: 16px;
 	}
 	.mobile-font{
 		font-size: 30px;
 	}
     .loading-indicator-container{
         top: 150px;
-    }
-    .loading-indicator{
-        width: 100px;
-        height: 100px;
-        padding: 10px;
-    }
-    .notice{
-		font-size: 30px;
-		padding: 30px 40px;  
-		border: 2px solid #d6e9c6;
-	}
-	.alert{
-		font-size: 30px;
-		padding: 30px 40px;  
-		border: 2px solid #ebccd1; 
-	}
-	.loading-more img{
-		width: 150px;
-	}
 }

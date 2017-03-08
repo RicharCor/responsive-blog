@@ -1,8 +1,8 @@
 <div class="row center-md center-xs full mega-padding black white-text ">
-	<div class="col-md-10 col-xs-11 flex center-items large-margin-top large-margin-bottom">
-		<%= image_tag @user.avatar, class:"circle left-text large-margin-right", style:"width: 100px; height: 100px;" %>
+	<div class="col-md-10 col-xs-11 flex popo large-margin-bottom">
+		<%= image_tag @user.avatar, class:"circle left-text large-margin-right box-100" %>
 		<div>
-			<p class="title"><%= @user.username %></p>
+			<p class="caca"><%= @user.username %></p>
 			<% if @user == current_user %>
 				<p class="big-font left">(Mi perfíl)</p>
 			<%end%>	
@@ -10,7 +10,7 @@
 
 	</div>
 
-	<div class="center-text pistache white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 10px; right: 150px;">
+	<div class="center-text pistache white-text circle user-comments medium-padding absolute box-115">
 		<% if @comments.count > 1 or 0 %>
 			<p style="font-size: 26px;"><%= @comments.count %></p>
 			<p style="font-size: 13px;">Comentarios</p>
@@ -22,7 +22,7 @@
 		<%end%>	
 	</div>
 
-	<div class="center-text pink white-text circle medium-padding absolute" style="height: 115px; width: 115px; top: 60px; right: 230px;">
+	<div class="center-text pink white-text circle medium-padding user-articles absolute box-115">
 		<% if @articles.count > 1 or 0 %>
 			<p style="font-size: 26px;"><%= @articles.count %></p>
 			<p style="font-size: 13px;">Artículos</p>
@@ -36,27 +36,27 @@
 </div>
 
 <div class="row center-md center-xs left-text">
-	<div class="row col-md-10 col-xs-11 no-padding">
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text white" id="user-articles"><i class="fa fa-file-text-o"></i></a>
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text" id="user-comments"><i class="fa fa-commenting-o"></i></a>
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text center-text" id="user-info"><i class="fa fa-user-o"></i></a>
+	<div class="row col-md-10 col-xs-12 no-padding">
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text white" id="user-articles"><i class="fa fa-file-text-o"></i></a>
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-comments"><i class="fa fa-commenting-o"></i></a>
+		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-info"><i class="fa fa-user-o"></i></a>
 	</div>
 
 
-	<div class="row tabcontent col-md-10 col-xs-11 white justify-content" id="user-articles-1">
+	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding justify-content" id="user-articles-1">
 		<p class="big-text full center-text">Artículos del usuario</p>
 		<% @articles.each do |article| %>
-			<div class="col-md-6 col-xs-6">
+			<div class="col-md-6 col-xs-12">
 				<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
 			</div>
 		<%end%>	
 	</div>
 
-	<div class="row tabcontent display-none col-md-10 col-xs-11 white" id="user-comments-1">
+	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
 		<p class="big-text full center-text">Comentarios del usuario</p>
 		<% @artiicles.each do |article| %>
 			<% article.comments.where(user: @user).each do |comment| %>
-				<div class="col-md-6 col-xs-6">
+				<div class="col-md-6 col-xs-12">
 					<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
 					<%= comment.title %>
 				</div>
@@ -64,7 +64,7 @@
 		<%end%>
 	</div>
 
-	<div class="row tabcontent display-none col-md-10 col-xs-11 mega-padding white justify-content" id="user-info-1">
+	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
 		<div class="col-md-12 col-xs-12">
 			<p class="big-text center-text">Informacion del usuario</p>
 			<%= @user.first_name %>
@@ -94,6 +94,24 @@
       $(".tabLink:eq(" + (localStorage.selectedTab - 1) + ")").click();
     }
   });
+
+ 	if ($(window).width() < 450) {
+	    $('.caca').addClass('subtitle');
+	    $('.popo').addClass('margin-right-20');
+	    $('.popo img').addClass('margin-bottom-20');
+	    $('.user-comments').addClass('top-65');
+		$('.user-comments').addClass('right-10');
+		$('.user-articles').addClass('top-65');
+		$('.user-articles').addClass('right-110');
+	} else {
+		$('.popo').addClass('center-items');
+		$('.popo').addClass('large-margin-top');
+	    $('.caca').addClass('title');
+		$('.user-comments').addClass('top-10');
+		$('.user-comments').addClass('right-150');
+		$('.user-articles').addClass('top-60');
+		$('.user-articles').addClass('right-230');
+	}
 </script>
 
 

@@ -149,7 +149,7 @@ header nav ul li .children-user div li a img {
 	.mobile-header{
 		display: block;
 		width: 100%;
-		min-width: 300px;
+		min-width: 320px;
 		position: fixed;
 		top: 0;
 		z-index: 1000;
@@ -158,23 +158,19 @@ header nav ul li .children-user div li a img {
 	.mobile-logo{
 		width: 218px;
 		display: block;
-		height: 100px;
+		height: 80px;
 		position: relative;
 		margin: 0px auto;
 	}
 	.mobile-logo img{
-		width: 100px;
+		width: 80px;
 		height: 100%;
 		padding: 15px 15px;
 		display: block;
 		float: left;
 	}
-	.mobile-logo p{
-		font-size: 50px;
-		float: left;
-	}
 	header nav{
-		top: 100px;
+		top: 80px;
 		width: 80%;
 		height: 100%;
 		background: #455A64 !important;
@@ -199,8 +195,8 @@ header nav ul li .children-user div li a img {
 	}
 	header nav ul li a{
 		color: #fff;
-		font-size: 30px;
-		padding: 30px 30px;
+		font-size: 16px;
+		padding: 20px 20px;
 	}
 	#header-search{
 		display: none;
@@ -212,14 +208,15 @@ header nav ul li .children-user div li a img {
 	}
 	.header-search{
 		width: 100%;
-		height: 100px;
-		font-size: 30px;
-		padding-left: 30px;
-		padding-right: 100px; 
+		height: 80px;
+		font-size: 16px;
+		padding-left: 20px;
+		padding-right: 80px; 
 	}
 	.header-submit{
-		width: 100px;
-		height: 100px;
+		width: 80px;
+		height: 80px;
+		font-size: 2em !important;
 	}
 	.user-container{
 		display: none;
@@ -231,7 +228,7 @@ header nav ul li .children-user div li a img {
 	 	position: relative;
 	  	float: left;
 	  	display: block;
-	  	padding: 50px 50px;
+	  	padding: 40px 40px;
 	  	input{
 		    position: absolute;
 		    width: 100%;
@@ -275,29 +272,27 @@ header nav ul li .children-user div li a img {
 	 	}
 	}
 	.toggle-search{
-		padding: 27.5px 32.7px;
+		padding: 26px 29px;
+		max-width: 80px;
+		max-height: 80px;
 		position: absolute;
 		display: block;
 		top: 0;
-		right: 100px;
+		right: 80px;
 		cursor: pointer;
 	}
-	.toggle-search i{
-		margin-top: -3px;
-	}
 	.toggle-user{
-		padding: 26px 32.7px;
+		padding: 25px 29px;
+		max-width: 80px;
+		max-height: 80px;
 		position: absolute;
 		display: block;
 		top: 0;
 		right: 0;
 		cursor: pointer;
 	}
-	.toggle-user-icon{
-		font-size: 26px !important; 
-	}
 	.header-user{
-		top: 100px;
+		top: 80px;
 		width: 80%;
 		height: 100%;
 		right: -100%;
@@ -306,15 +301,13 @@ header nav ul li .children-user div li a img {
 		overflow: auto;
 	}
 	.header-user p {
-		font-size: 40px;
-		padding-top: 20px;
-		margin-bottom: -10px;
+		margin-bottom: -20px;
 		text-transform: uppercase;
 	}
 	.header-user div img{
 		height: auto;
-		max-width: 300px;
-		min-height: 300px; 
+		max-width: 200px;
+		min-height: 200px; 
 		-webkit-border-radius: 50%;
 	    -moz-border-radius: 50%;
 	    -o-border-radius: 50%;
@@ -327,8 +320,8 @@ header nav ul li .children-user div li a img {
 	}
 	.header-user ul li a{
 		color: #fff;
-		font-size: 30px;
+		font-size: 16px;
 		display: block;
-		padding: 30px 30px;
+		padding: 20px 20px;
 	}
 }
