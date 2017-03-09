@@ -10,6 +10,9 @@
 
 	</div>
 
+	<i class="fa fa-commenting-o"></i>
+	<span class="fa fa-commenting-o"></span>
+
 	<div class="center-text pistache white-text circle user-comments medium-padding box-115">
 		<% if @comments.count > 1 or 0 %>
 			<p style="font-size: 26px;"><%= @comments.count %></p>
@@ -95,7 +98,32 @@
     }
   });
 
+ 	if ($(window).width() < 450) {
+	    $('.caca').addClass('subtitle');
+	    $('.popo img').addClass('margin-bottom-20');
 
+	    $('.user-comments').addClass('block');
+	    $('.user-comments').addClass('large-margin-left');
+	    $('.user-comments').addClass('large-margin-right');
+
+		$('.user-articles').addClass('block');
+		$('.user-articles').addClass('large-margin-left');
+	    $('.user-articles').addClass('large-margin-right');
+
+	} else {
+
+		$('.popo').addClass('center-items');
+		$('.popo').addClass('large-margin-top');
+	    $('.caca').addClass('title');
+
+	    $('.user-comments').addClass('absolute');
+		$('.user-comments').addClass('top-10');
+		$('.user-comments').addClass('right-150');
+
+		$('.user-articles').addClass('absolute');
+		$('.user-articles').addClass('top-60');
+		$('.user-articles').addClass('right-230');
+	}
 </script>
 
 
