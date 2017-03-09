@@ -2,16 +2,17 @@
 	<div class="col-md-10 col-xs-11 flex break-word popo large-margin-bottom">
 		<%= image_tag @user.avatar, class:"circle left-text large-margin-right box-100" %>
 		<div>
-			<p class="caca"><%= @user.username %></p>
+			<p class="caca">
+				<%= @user.username %>
+			</p>
 			<% if @user == current_user %>
-				<p class="big-font left">(Mi perfíl)</p>
+				<p class="big-font left">
+					(Mi perfíl)
+				</p>
 			<%end%>	
 		</div>
 
 	</div>
-
-	<i class="fa fa-commenting-o"></i>
-	<span class="fa fa-commenting-o"></span>
 
 	<div class="center-text pistache white-text circle user-comments medium-padding box-115">
 		<% if @comments.count > 1 or 0 %>
@@ -47,7 +48,7 @@
 
 
 	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding justify-content" id="user-articles-1">
-		<p class="big-text full center-text">Artículos del usuario</p>
+		<p class="big-text full large-margin-bottom center-text">Artículos del usuario</p>
 		<% @articles.each do |article| %>
 			<div class="col-md-6 col-xs-12">
 				<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
@@ -56,7 +57,9 @@
 	</div>
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
-		<p class="big-text full center-text">Comentarios del usuario</p>
+		<p class="big-text full large-margin-bottom center-text">
+			Comentarios del usuario
+		</p>
 		<% @artiicles.each do |article| %>
 			<% article.comments.where(user: @user).each do |comment| %>
 				<div class="col-md-6 col-xs-12">
@@ -69,9 +72,32 @@
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
 		<div class="col-md-12 col-xs-12">
-			<p class="big-text center-text">Informacion del usuario</p>
-			<%= @user.first_name %>
-			<%= @user.last_name %>
+			<p class="big-text large-margin-bottom center-text">
+				Informacion del usuario
+			</p>
+			<p>
+				Nombre: <%= @user.first_name %>
+			</p> 
+			<p>
+				Apellido: <%= @user.last_name %>
+			</p>
+			<p>
+				<%= time_ago_in_words(@user.current_sign_in_at) %>
+			</p>
+			<p>
+				Email: <%= @user.email %>
+			</p>
+			<p>
+				<%= time_ago_in_words(@user.last_seen) %>
+				<% if @user.last_seen > 5.minutes.ago %>
+					<p class="green-text">En línea</p>
+				<%else%>
+					<p class="red-text">Desconectado</p>
+				<%end%>
+			</p>
+			<p>
+				Caca: <%= time_ago_in_words(@user.last_sign_in_at) %>
+			</p>
 		</div>
 	</div>		
 </div>

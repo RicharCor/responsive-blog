@@ -16,3 +16,9 @@
         <li><%= link_to user.username, user_path(user) %> - <%= image_tag user.avatar %> - <%= link_to "Eliminar", user, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %></li>
     <% end %>
 </ul>
+
+<ul>
+	<% @popos.each do |user| %>
+        <li><%= link_to user.username, user_path(user) %></li>
+    <% end %>
+</ul>

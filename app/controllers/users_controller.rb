@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   	def index
         user = params[:user_search]
         @users = User.search(user)
+        @popos = User.where('last_seen > ?', 5.minutes.ago) 
  	end
 
-  def show
-    @articles = @user.articles
-    @artiicles= Article.all
-    @comments = @user.comments
+    def show
+        @articles = @user.articles
+        @artiicles= Article.all
+        @comments = @user.comments
 	end	
 
 	def destroy

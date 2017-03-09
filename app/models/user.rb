@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 	default_scope { order('created_at DESC') }
 
-  	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :lastseenable
 
   	acts_as_messageable
 
