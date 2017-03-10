@@ -34,6 +34,10 @@ gem 'will_paginate'
 gem 'trix'
 gem 'friendly_id'
 gem 'devise_lastseenable'
+gem 'private_pub'
+gem 'faye'
+gem 'thin', require: false
+gem 'sync'
 gem 'redis'
 # gem 'remotipart', github: "urielhdz/remotipart"
 # gem 'aws-sdk', '2.3'
