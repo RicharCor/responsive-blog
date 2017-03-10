@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'rooms/show'
+
+  resources :messages
   resources :activities
 	resources :categories
 	resources :articles do
@@ -9,11 +12,12 @@ Rails.application.routes.draw do
 	devise_for :users 
 	resources :users, only: [:index, :show, :destroy]
 
-	root 'articles#index'
+	root 'rooms#show'
 
 	get "/dashboard", to: "welcome#dashboard"
 
 	put "/articles/:id/publish", to: "articles#publish"
 	put "/articles/:id/unpublish", to: "articles#unpublish"
 
+	mount ActionCable.server => '/cable'
 end
