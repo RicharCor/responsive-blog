@@ -75,6 +75,12 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+  config.middleware.use ChatActionCable  
+  config.web_socket_server_url = "https://immense-dusk-74923.herokuapp.com//"  
+
+  config.action_cable.allowed_request_origins = [
+  'https://immense-dusk-74923.herokuapp.com/', 'https://immense-dusk-74923.herokuapp.com/']
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
