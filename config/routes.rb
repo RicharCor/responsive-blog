@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
+	get 'rooms/show'
 
-  get 'rooms/show'
-
-  resources :messages
-  resources :activities
 	resources :categories
+
 	resources :articles do
   		resources :comments, only: [:create, :destroy]
 	end
 
 	devise_for :users 
 	resources :users, only: [:index, :show, :destroy]
+
+	resources :messages
 
 	root 'rooms#show'
 

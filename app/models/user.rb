@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
 	has_many :comments, :dependent => :delete_all
 	has_many :articles, :dependent => :delete_all
+	has_many :messages, :dependent => :delete_all
 
 	include PermissionsConcern
 
