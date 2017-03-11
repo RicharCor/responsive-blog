@@ -3,6 +3,6 @@
     	<%= message.user.username %>:
   	</div>
   	<div class="message-content">
-    	<%= message.content %> - <%= time_ago_in_words(message.created_at) %>
+    	<%= message.content %> - <%= message.created_at.strftime("%H:%M, %d %b") %>
   	</div>
 </div>
