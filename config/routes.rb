@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-	get 'rooms/show'
+
+	root 'messages#index'
 
 	resources :categories
 
@@ -11,8 +12,6 @@ Rails.application.routes.draw do
 	resources :users, only: [:index, :show, :destroy]
 
 	resources :messages
-
-	root 'rooms#show'
 
 	get "/dashboard", to: "welcome#dashboard"
 

@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-	belongs_to :user
-	delegate :username, to: :user, prefix: true
-  	after_create_commit { MessageBroadcastJob.perform_later(self) }
+  	belongs_to :user
+  	validates :content, presence: true
+ 	scope :for_display, -> { order(:created_at).last(50) }
 end
