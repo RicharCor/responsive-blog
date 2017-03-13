@@ -1,8 +1,7 @@
-<div class="message">
-  	<div class="message-user">
-    	<%= message.user.username %>:
-  	</div>
-  	<div class="message-content">
-    	<%= message.content %> - <%= message.created_at.strftime("%H:%M, %d %b") %>
-  	</div>
+<div>
+	<strong>
+		<%= message.user.username %>:
+	</strong>
+	
+	<%= message.body %>
 </div>

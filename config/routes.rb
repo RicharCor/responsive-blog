@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-	root 'messages#index'
+	root 'chatrooms#index'
+
+  	resources :chatrooms do
+  		resource :chatroom_users
+  		resources :messages
+  	end
 
 	resources :categories
 
@@ -10,8 +15,6 @@ Rails.application.routes.draw do
 
 	devise_for :users 
 	resources :users, only: [:index, :show, :destroy]
-
-	resources :messages
 
 	get "/dashboard", to: "welcome#dashboard"
 
