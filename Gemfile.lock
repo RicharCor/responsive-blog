@@ -50,12 +50,7 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    autoprefixer-rails (6.7.7)
-      execjs
     bcrypt (3.1.11-x86-mingw32)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     builder (3.2.3)
     carrierwave (1.0.0)
       activemodel (>= 4.0.0)
@@ -183,7 +178,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
-    redis (3.3.3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.23)
@@ -238,7 +232,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
   coffee-script-source (= 1.8.0)
@@ -257,7 +250,6 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
-  redis
   sass-rails (~> 5.0)
   sqlite3
   sync

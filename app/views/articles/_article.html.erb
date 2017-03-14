@@ -13,14 +13,9 @@
 				<h2 class="small-margin-bottom">
 					<%= link_to article.title, article %>
 				</h2>
-				<div class="article-body hidden inside-list">
-					<%= article.body.html_safe %>
+				<div class="hidden inside-list">
+					<%= sanitize article.body.truncate(200) %>
 				</div>
-				<% if article.body.length > 150 %>
-					<div>
-						...
-					</div>
-				<% end %>
 			</div>
 		</div>
 	</div>

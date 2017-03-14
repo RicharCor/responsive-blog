@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+    before_action :authenticate_user!, except: [:index]
     before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -17,11 +18,11 @@ class ChatroomsController < ApplicationController
     end
 
     def create
-        @chatroom = Chatroom.new(chatroom_params)
+        @chatroom = current_user.chatrooms.new(chatroom_params)
 
         respond_to do |format|
             if @chatroom.save
-                format.html { redirect_to @chatroom, notice: 'Chatroom was successfully created.' }
+                format.html { redirect_to chatrooms_path, notice: 'Chatroom was successfully created.' }
                 format.json { render :show, status: :created, location: @chatroom }
             else
                 format.html { render :new }

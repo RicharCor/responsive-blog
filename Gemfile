@@ -38,8 +38,6 @@ gem 'private_pub'
 gem 'faye'
 gem 'thin', require: false
 gem 'sync'
-gem 'redis'
-gem 'bootstrap-sass'
 # gem 'remotipart', github: "urielhdz/remotipart"
 # gem 'aws-sdk', '2.3'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
