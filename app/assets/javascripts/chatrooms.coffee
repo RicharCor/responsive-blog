@@ -1,5 +1,5 @@
 $(document).on "turbolinks:load", ->
-	$("#message_body").on "keypress", (e) ->	
+	$("#new_message").on "keypress", (e) ->	
 		if e && e.KeyCode == 13
 			e.preventDefault()
 			$(this).submit()

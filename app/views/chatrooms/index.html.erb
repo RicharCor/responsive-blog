@@ -22,7 +22,7 @@
 
             <% @chatrooms.reverse.each do |chatroom| %>
                 <%= chatroom.name %>
-                Creado por <%= chatroom.user.username %>
+                Creado por <%= chatroom.user_id %>
                 Hace <%= time_ago_in_words(chatroom.created_at) %>
 
                 <div>
@@ -30,7 +30,7 @@
                         <%= link_to 'Entrar', chatroom_chatroom_users_path(chatroom), method: :post %>
                         <%= link_to 'Salir', chatroom_chatroom_users_path(chatroom), method: :delete %>
 
-                        <% if current_user.id == chatroom.user.id %>
+                        <% if current_user.id == chatroom.user_id %>
                             <%= link_to 'Editar', edit_chatroom_path(chatroom) %>
                             <%= link_to 'Eliminar', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %>
                         <%end%> 

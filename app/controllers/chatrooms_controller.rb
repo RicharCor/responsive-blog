@@ -18,8 +18,8 @@ class ChatroomsController < ApplicationController
     end
 
     def create
-        @chatroom = current_user.chatrooms.new(chatroom_params)
-
+        @chatroom = Chatroom.new(chatroom_params)
+        
         respond_to do |format|
             if @chatroom.save
                 format.html { redirect_to chatrooms_path, notice: 'Chatroom was successfully created.' }

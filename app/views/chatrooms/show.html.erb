@@ -26,7 +26,7 @@
 			</div>
 
 			<%= form_for [@chatroom, Message.new] do |f| %>
-				<%= f.text_area :body, rows: 1, autofocus: true %>
+				<%= f.text_area :body, autofocus: true %>
 				<%= f.submit "Publicar" %>
 			<%end%>
 
