@@ -3,5 +3,5 @@
 		<%= message.user.username %>:
 	</strong>
 	
-	<%= message.body %>
+	<%= message.body %> - <%= message.created_at.strftime("%H:%M, %d %b") %>
 </div>

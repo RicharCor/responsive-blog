@@ -26,8 +26,7 @@
 			</div>
 
 			<%= form_for [@chatroom, Message.new] do |f| %>
-				<%= f.text_area :body, autofocus: true %>
-				<%= f.submit "Publicar" %>
+				<%= f.text_field :body, autofocus: true %>
 			<%end%>
 
             <%= link_to 'Volver a las salas de chat', chatrooms_path %>

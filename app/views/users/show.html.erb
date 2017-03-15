@@ -98,6 +98,22 @@
 			<p>
 				Caca: <%= time_ago_in_words(@user.last_sign_in_at) %>
 			</p>
+			<div>
+				<% if @user.chatrooms.count > 1 %>
+					El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
+		        <%else%> 
+			    	<% if @user.chatrooms.count < 1 %>
+			    		El usuario no pertenece a salas de chat
+			    	<%else%>
+			    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
+			    	<%end%>
+		        <%end%>  
+				<% @user.chatrooms.each do |chatroom| %>
+		            <li>
+		                <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
+		            </li> 
+	            <%end%>   
+			</div>
 		</div>
 	</div>		
 </div>

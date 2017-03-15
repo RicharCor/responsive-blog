@@ -19,6 +19,7 @@ class ChatroomsController < ApplicationController
 
     def create
         @chatroom = Chatroom.new(chatroom_params)
+        @chatroom.user = current_user
         
         respond_to do |format|
             if @chatroom.save
@@ -34,7 +35,7 @@ class ChatroomsController < ApplicationController
     def update
         respond_to do |format|
             if @chatroom.update(chatroom_params)
-                format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
+                format.html { redirect_to chatrooms_path, notice: 'Chatroom was successfully updated.' }
                 format.json { render :show, status: :ok, location: @chatroom }
             else
                 format.html { render :edit }

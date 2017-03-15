@@ -8,7 +8,7 @@
                         <li>
                             <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
                         </li> 
-                    <%end%>   
+                    <%end%> 
                 </ul>
             <%end%>    
         </div>
@@ -22,7 +22,7 @@
 
             <% @chatrooms.reverse.each do |chatroom| %>
                 <%= chatroom.name %>
-                Creado por <%= chatroom.user_id %>
+                Creado por <%= chatroom.user.username %>
                 Hace <%= time_ago_in_words(chatroom.created_at) %>
 
                 <div>
@@ -37,7 +37,7 @@
                     <%end%> 
                 </div>
             <% end %>
-
+            
             <br>
             
             <% if user_signed_in? %>
