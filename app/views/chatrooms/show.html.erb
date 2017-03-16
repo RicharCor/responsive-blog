@@ -19,7 +19,7 @@
 			  <%= @chatroom.name %>
 			</p>
 
-			<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
+			<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>' class="break-word">
 				<% @messages.each do |message| %>
 					<%= render message %>
 				<%end%>		

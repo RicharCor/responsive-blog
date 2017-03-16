@@ -1,7 +1,13 @@
-<div>
+<div class="flex center-items box mega-padding">
+	<%= link_to image_tag(message.user.avatar,  class:"box-50 circle"), message.user %>
 	<strong>
-		<%= message.user.username %>:
+		<%= link_to message.user.username, message.user %>:
 	</strong>
 	
-	<%= message.body %> - <%= message.created_at.strftime("%H:%M, %d %b") %>
+	<%= message.body %> - 
+	<% if message.created_at > 24.hours.ago %>
+		Hace <%= time_ago_in_words(message.created_at) %>
+	<%else%>
+		<%= message.created_at.strftime("%H:%M, %d %b") %>
+	<%end%>
 </div>

@@ -28,9 +28,9 @@
 				<div class="pistache center-text">
 					<% if user_signed_in? %>
 						<p class="white-text uppercase medium-padding-top subtitle">Hola <%=  current_user.first_name %>!</p>
-						<%= link_to image_tag(current_user.avatar.url,  class:"avatar"), current_user %>
+						<%= link_to image_tag(current_user.avatar,  class:"avatar"), current_user %>
 					<%else%>
-						<%= link_to image_tag("avatar.jpg"), current_user, class: "no-padding" %>
+						<%= link_to image_tag("avatar.jpg"), new_user_session_path, class: "no-padding" %>
 					<%end%>
 				</div>
 

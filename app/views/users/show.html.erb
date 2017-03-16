@@ -2,39 +2,58 @@
 	<div class="col-md-10 col-xs-11 flex break-word popo large-margin-bottom">
 		<%= image_tag @user.avatar, class:"circle left-text large-margin-right box-100" %>
 		<div>
-			<p class="caca">
+			<p class="user-username">
 				<%= @user.username %>
 			</p>
+
 			<% if @user == current_user %>
 				<p class="big-font left">
 					(Mi perfíl)
 				</p>
 			<%end%>	
+
+			<% if @user.last_seen > 5.minutes.ago %>
+				<p class="green-text">En línea</p>
+			<%else%>
+				<p class="red-text">Desconectado</p>
+			<%end%>
 		</div>
 
 	</div>
 
+	<div class="center-text blue white-text circle medium-padding user-chatrooms box-115">
+		<% if @chatrooms.count > 1 or 0 %>
+			<p class="font-26"><%= @chatrooms.count %></p>
+			<p class="font-13">Chats</p>
+			<i class="fa fa-comments-o small-margin-top font-28"></i>
+		<%else%>
+			<p class="font-26"><%= @chatrooms.count %></p>
+			<p class="font-13">Chats</p>
+			<i class="fa fa-file-text-o small-margin-top font-28"></i>
+		<%end%>	
+	</div>
+
 	<div class="center-text pistache white-text circle user-comments medium-padding box-115">
 		<% if @comments.count > 1 or 0 %>
-			<p style="font-size: 26px;"><%= @comments.count %></p>
-			<p style="font-size: 13px;">Comentarios</p>
-			<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+			<p class="font-26"><%= @comments.count %></p>
+			<p class="font-13">Comentarios</p>
+			<i class="fa fa-commenting-o small-margin-top font-28"></i>
 		<%else%>
-			<p style="font-size: 26px;"><%= @comments.count %></p>
-			<p style="font-size: 13px;">Comentarios</p>
-			<i class="fa fa-commenting-o small-margin-top" style="font-size: 28px;"></i>
+			<p class="font-26"><%= @comments.count %></p>
+			<p class="font-13">Comentarios</p>
+			<i class="fa fa-commenting-o small-margin-top font-28"></i>
 		<%end%>	
 	</div>
 
 	<div class="center-text pink white-text circle medium-padding user-articles box-115">
 		<% if @articles.count > 1 or 0 %>
-			<p style="font-size: 26px;"><%= @articles.count %></p>
-			<p style="font-size: 13px;">Artículos</p>
-			<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+			<p class="font-26"><%= @articles.count %></p>
+			<p class="font-13">Artículos</p>
+			<i class="fa fa-file-text-o medium-margin-top font-26"></i>
 		<%else%>
-			<p style="font-size: 26px;"><%= @articles.count %></p>
-			<p style="font-size: 13px;">Artículo</p>
-			<i class="fa fa-file-text-o medium-margin-top" style="font-size: 26px;"></i>
+			<p class="font-26"><%= @articles.count %></p>
+			<p class="font-13">Artículo</p>
+			<i class="fa fa-file-text-o medium-margin-top font-26"></i>
 		<%end%>	
 	</div>
 </div>
@@ -47,33 +66,44 @@
 	</div>
 
 
-	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding justify-content" id="user-articles-1">
-		<p class="big-text full large-margin-bottom center-text">Artículos del usuario</p>
-		<% @articles.each do |article| %>
-			<div class="col-md-6 col-xs-12">
-				<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
-			</div>
-		<%end%>	
+	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding" id="user-articles-1">
+		<p class="big-text full large-margin-bottom center-text">
+			Artículos del usuario
+		</p>
+
+		<% if @articles.count == 0 %>
+			Este usuario no a publicado artículos aún
+		<%else%>
+			<% @articles.each do |article| %>
+				<div class="col-md-6 col-xs-12">
+					<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
+				</div>
+			<%end%>	
+		<%end%>
 	</div>
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
 		<p class="big-text full large-margin-bottom center-text">
 			Comentarios del usuario
 		</p>
-		<% @artiicles.each do |article| %>
-			<% article.comments.where(user: @user).each do |comment| %>
-				<div class="col-md-6 col-xs-12">
-					<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
-					<%= comment.title %>
-				</div>
-			<%end%>		
+		<% if @artiicles.where(user: @user).count == 0 %>
+			Este usuario no a comentado aún
+		<%else%>
+			<% @artiicles.each do |article| %>
+				<% article.comments.where(user: @user).each do |comment| %>
+					<div class="col-md-6 col-xs-12">
+						<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
+						<%= comment.title %>
+					</div>
+				<%end%>		
+			<%end%>
 		<%end%>
 	</div>
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
 		<div class="col-md-12 col-xs-12">
 			<p class="big-text large-margin-bottom center-text">
-				Informacion del usuario
+				Información del usuario
 			</p>
 			<p>
 				Nombre: <%= @user.first_name %>
@@ -82,33 +112,35 @@
 				Apellido: <%= @user.last_name %>
 			</p>
 			<p>
-				<%= time_ago_in_words(@user.current_sign_in_at) %>
-			</p>
-			<p>
 				Email: <%= @user.email %>
 			</p>
 			<p>
-				<%= time_ago_in_words(@user.last_seen) %>
-				<% if @user.last_seen > 5.minutes.ago %>
-					<p class="green-text">En línea</p>
+				Ultima actividad: Hace 
+				<% if @user.last_seen > 24.hours.ago %>
+					Hace <%= time_ago_in_words(@user.last_seen) %>
 				<%else%>
-					<p class="red-text">Desconectado</p>
+					<%= @user.last_seen.strftime("%H:%M, %d %b") %>
 				<%end%>
 			</p>
 			<p>
-				Caca: <%= time_ago_in_words(@user.last_sign_in_at) %>
+				Ultimo inicio de sesión:
+				<% if @user.current_sign_in_at > 24.hours.ago %>
+					Hace <%= time_ago_in_words(@user.current_sign_in_at) %>
+				<%else%>
+					<%= @user.current_sign_in_at.strftime("%H:%M, %d %b") %>
+				<%end%>
 			</p>
 			<div>
-				<% if @user.chatrooms.count > 1 %>
+				<% if @chatrooms.count > 1 %>
 					El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
 		        <%else%> 
-			    	<% if @user.chatrooms.count < 1 %>
+			    	<% if @chatrooms.count < 1 %>
 			    		El usuario no pertenece a salas de chat
 			    	<%else%>
 			    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
 			    	<%end%>
 		        <%end%>  
-				<% @user.chatrooms.each do |chatroom| %>
+				<% @chatrooms.each do |chatroom| %>
 		            <li>
 		                <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
 		            </li> 
@@ -141,30 +173,38 @@
   });
 
  	if ($(window).width() < 450) {
-	    $('.caca').addClass('subtitle');
+	    $('.user-username').addClass('subtitle');
 	    $('.popo img').addClass('margin-bottom-20');
 
-	    $('.user-comments').addClass('block');
-	    $('.user-comments').addClass('large-margin-left');
-	    $('.user-comments').addClass('large-margin-right');
+	    $('.user-chatrooms').addClass('block');
+		$('.user-chatrooms').addClass('large-margin-left');
+		$('.user-chatrooms').addClass('large-margin-right');
 
 		$('.user-articles').addClass('block');
 		$('.user-articles').addClass('large-margin-left');
 	    $('.user-articles').addClass('large-margin-right');
 
+	    $('.user-comments').addClass('block');
+	    $('.user-comments').addClass('large-margin-left');
+	    $('.user-comments').addClass('large-margin-right');
+
 	} else {
 
 		$('.popo').addClass('center-items');
 		$('.popo').addClass('large-margin-top');
-	    $('.caca').addClass('title');
+	    $('.user-username').addClass('title');
 
-	    $('.user-comments').addClass('absolute');
-		$('.user-comments').addClass('top-10');
-		$('.user-comments').addClass('right-150');
+	    $('.user-chatrooms').addClass('absolute');
+		$('.user-chatrooms').addClass('top-5');
+		$('.user-chatrooms').addClass('right-310');
 
 		$('.user-articles').addClass('absolute');
-		$('.user-articles').addClass('top-60');
+		$('.user-articles').addClass('top-50');
 		$('.user-articles').addClass('right-230');
+
+	    $('.user-comments').addClass('absolute');
+		$('.user-comments').addClass('top-5');
+		$('.user-comments').addClass('right-150');
 	}
 </script>
 

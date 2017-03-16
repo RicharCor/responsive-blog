@@ -24,6 +24,7 @@
                 <%= chatroom.name %>
                 Creado por <%= chatroom.user.username %>
                 Hace <%= time_ago_in_words(chatroom.created_at) %>
+                Hay <%= chatroom.users.count %> usuarios en este chat
 
                 <div>
                     <% if user_signed_in? %>

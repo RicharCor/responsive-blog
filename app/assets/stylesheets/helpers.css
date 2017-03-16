@@ -282,6 +282,9 @@
 .small-text{
 	font-size: 12px;
 }
+.font-13{ font-size: 13px; }
+.font-26{ font-size: 26px; }
+.font-28{ font-size: 28px; }
 .no-padding{
 	padding: 0px 0px;
 }
@@ -404,21 +407,29 @@
 
 /* Boxes */
 
+.box-50{ width: 50px; height: 50px; }
 .box-100{ width: 100px; height: 100px; }
 .box-115{ width: 115px; height: 115px; }
 
 /* Absolute pixels */
 
+.top-0{ top: 0px; }
+.top-5{ top: 5px; }
 .top-10{ top: 10px; }
 .top-15{ top: 15px; }
+.top-50{ top: 50px; }
 .top-60{ top: 60px; }
 .top-65{ top: 65px; }
+.top-70{ top: 70px; }
 .right-10{ right: 10px; }
 .right-40{ right: 40px; }
 .right-80{ right: 80px; }
 .right-110{ right: 110px; }
 .right-150{ right: 150px; }
+.right-160{ right: 160px; }
 .right-230{ right: 230px; }
+.right-300{ right: 300px; }
+.right-310{ right: 310px; }
 
 /* Word break */
 

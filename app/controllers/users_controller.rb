@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         @articles = @user.articles
         @artiicles= Article.all
         @comments = @user.comments
+        @chatrooms = @user.chatrooms
 	end	
 
 	def destroy
