@@ -75,7 +75,7 @@ a{
 
 @media screen and (max-width: 1024px) {
 	.margin-from-header{
-		margin-top: 80px !important;
+		margin-top: 60px !important;
 	}
 	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 	  	color: #bdc3c7;

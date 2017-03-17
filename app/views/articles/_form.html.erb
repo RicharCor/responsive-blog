@@ -10,23 +10,23 @@
 		</div>
 	<%end%>
 
-	<div class="large-margin-bottom">
+	<div class="large-margin-bottom col-xs-12">
 		Portada: <%= f.file_field :cover%> 
 	</div>
-	<div class="large-margin-bottom">
-		<%= f.text_field :title, placeholder: "Título", id: 'article-title' %>
-		<p id="article-character-counter" class="short-transition right"></p>
+	<div class="large-margin-bottom col-xs-12">
+		<%= f.text_field :title, placeholder: "Título", id: 'article-title', class:"full" %>
+		<p id="article-character-counter" class="short-transition"></p>
 	</div>
-	<div class="large-margin-bottom">
+	<div class="large-margin-bottom col-xs-12">
 		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo", style:"min-height: 100px !important;" %>
 	</div>
 	<div class="row full center left-text large-margin-bottom">
 		<% if @article.categories.empty? %>
-			<div class="col-md-12 small-margin-bottom border-bottom small-padding-bottom center-text">
+			<div class="col-md-12 col-xs-12 small-margin-bottom border-bottom small-padding-bottom center-text">
 				Categorías
 			</div>
 			<% @categories.each do |category| %>
-				<div class="col-md-6 col-sm-6 small-margin-top small-margin-bottom">
+				<div class="col-md-6 col-sm-6 col-xs-12 small-margin-top small-margin-bottom">
 					<%= check_box_tag "categories[]", category.id %>
 					<%= category.title %>
 				</div>

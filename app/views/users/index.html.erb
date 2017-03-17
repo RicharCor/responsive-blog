@@ -1,22 +1,43 @@
-<h1>Usuarios</h1>
+<div class="row center-md center-sm center-xs">
+	<div class="row col-md-11 col-xs-12 white large-margin-bottom large-padding">
+		<div class="col-md-4 col-xs-12 flex center-items users-title">
+			<p class="title">Usuarios</p>
+		</div>
+		
+		<div class="col-md-4 col-sm-6 col-xs-12 flex center-items justify-content">
+			<% if @users.any? %>
+				Hay <%= @users.count %> usuarios
+				<% if @popos.count > 0 %>
+					(
+					<p class="green-text">
+						<%= @popos.count %> en línea
+					</p>
+					)
+				<%end%>
+			<%else%>	
+				No se encontraron usuarios
+			<%end%>
+		</div>
 
-<% if @users.any? %>
-	Hay <%= @users.count %> usuarios
-<%else%>	
-	No se encontraron usuarios
-<%end%>
+		<div class="col-md-4 col-sm-6 col-xs-12 flex center-items justify-right user-search">
+			<%= form_tag users_path, method: :get do %>
+				<%= text_field_tag :user_search, params[:user_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar usuarios" %>
+				<%= submit_tag "Search" %>
+			<%end%>	
+		</div>
+	</div>
 
-<%= form_tag users_path, method: :get do %>
-	<%= text_field_tag :user_search, params[:user_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar usuarios" %>
-	<%= submit_tag "Search" %>
-<%end%>
-
-<div class="row center-md">
 	<% @users.each do |user| %>
-	    <div class="col-md-2 mega-padding white small-margin-left small-margin-right box-shadow">
-	        <div>
-	        	<%= image_tag user.avatar, class:"box-150 circle box-shadow" %>
-	        </div> 
+	    <div class="col-md-2 col-sm-3 col-xs-8 large-margin-bottom mega-padding white small-margin-left small-margin-right box-shadow relative">
+	        <div clasS="relative">
+	        	<%= image_tag user.avatar, class:"box-150 box-shadow circle" %>
+
+	        	<% if user.last_seen > 5.minutes.ago %>
+					<p class="box-20 absolute bottom-10 right-40 green circle"></p>
+				<%else%>
+					<p class="box-20 absolute bottom-10 right-40 red circle"></p>
+				<%end%>
+	        </div>
 
 	       	<% if user.last_seen > 5.minutes.ago %>
 				<p class="green-text small-margin-top">En línea</p>
@@ -24,23 +45,37 @@
 				<p class="red-text small-margin-top">Desconectado</p>
 			<%end%>
 
-	        <p class="font-40">
+	        <p class="font-40 small-margin-bottom">
 	        	<%= link_to user.username, user_path(user) %>
 	        </p> 
 
 	        <% if user_signed_in? %>
 	        	<% if current_user.is_admin? %>
-	        		<%= link_to "Eliminar", user, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %>
+	        		<%= link_to "Eliminar", user, method: :delete, data: { confirm: "Estas seguro?" }, class:"red-text absolute bottom-10 right" %>
 	        	<%end%>
 	        <%end%>
 		</div>
 	<%end%>	
+
+
+
+	<div class="col-md-10">
+		<% @popos.each do |user| %>
+	        <%= link_to user.username, user_path(user) %>
+	    <% end %>
+	</div>
 </div>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+   	if ($(window).width() < 770) {
+   		$('.users-title').removeClass('flex');
 
+   		$('.user-search').removeClass('justify-right');
+   		$('.user-search').removeClass('flex');
+   		$('.user-search').addClass('medium-margin-top');
+   		$('.user-search').addClass('medium-margin-bottom');
 
-<ul>
-	<% @popos.each do |user| %>
-        <li><%= link_to user.username, user_path(user) %></li>
-    <% end %>
-</ul>
+	} else {
+	}
+</script>

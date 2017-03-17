@@ -1,5 +1,5 @@
 <div class="row center-md center-xs full mega-padding black white-text ">
-	<div class="col-md-10 col-xs-11 flex break-word popo large-margin-bottom">
+	<div class="col-md-10 col-xs-11 flex break-word popo no-padding large-margin-bottom">
 		<%= image_tag @user.avatar, class:"circle left-text large-margin-right box-100" %>
 		<div>
 			<p class="user-username">
@@ -13,9 +13,9 @@
 			<%end%>	
 
 			<% if @user.last_seen > 5.minutes.ago %>
-				<p class="green-text">En línea</p>
+				<p class="green-text user-status">En línea</p>
 			<%else%>
-				<p class="red-text">Desconectado</p>
+				<p class="red-text user-status">Desconectado</p>
 			<%end%>
 		</div>
 
@@ -115,7 +115,10 @@
 				Email: <%= @user.email %>
 			</p>
 			<p>
-				Ultima actividad: Hace 
+				Ultima actividad: 
+
+				<br>
+
 				<% if @user.last_seen > 24.hours.ago %>
 					Hace <%= time_ago_in_words(@user.last_seen) %>
 				<%else%>
@@ -124,12 +127,18 @@
 			</p>
 			<p>
 				Ultimo inicio de sesión:
+
+				<br>
+
 				<% if @user.current_sign_in_at > 24.hours.ago %>
 					Hace <%= time_ago_in_words(@user.current_sign_in_at) %>
 				<%else%>
 					<%= @user.current_sign_in_at.strftime("%H:%M, %d %b") %>
 				<%end%>
 			</p>
+
+			<br>
+
 			<div>
 				<% if @chatrooms.count > 1 %>
 					El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
@@ -152,7 +161,8 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $(".tabLink").each(function(){
+
+  	$(".tabLink").each(function(){
       $(this).click(function(){
         localStorage.selectedTab = $(this).index() + 1;
         tabeId = $(this).attr('id');
@@ -167,32 +177,34 @@
     });  
       
     // search for local storage
-    if (localStorage.selectedTab) {
-      $(".tabLink:eq(" + (localStorage.selectedTab - 1) + ")").click();
-    }
-  });
+	    if (localStorage.selectedTab) {
+	      $(".tabLink:eq(" + (localStorage.selectedTab - 1) + ")").click();
+	    }
+	  });
 
  	if ($(window).width() < 450) {
-	    $('.user-username').addClass('subtitle');
-	    $('.popo img').addClass('margin-bottom-20');
+	    $('.user-username').addClass('font-26');
+	    $('.popo img').addClass('medium-margin-bottom');
 
 	    $('.user-chatrooms').addClass('block');
-		$('.user-chatrooms').addClass('large-margin-left');
-		$('.user-chatrooms').addClass('large-margin-right');
+		$('.user-chatrooms').addClass('small-margin-left');
+		$('.user-chatrooms').addClass('small-margin-right');
 
 		$('.user-articles').addClass('block');
-		$('.user-articles').addClass('large-margin-left');
-	    $('.user-articles').addClass('large-margin-right');
+		$('.user-articles').addClass('small-margin-left');
+	    $('.user-articles').addClass('small-margin-right');
 
 	    $('.user-comments').addClass('block');
-	    $('.user-comments').addClass('large-margin-left');
-	    $('.user-comments').addClass('large-margin-right');
+	    $('.user-comments').addClass('small-margin-left');
+	    $('.user-comments').addClass('small-margin-right');
 
 	} else {
 
 		$('.popo').addClass('center-items');
 		$('.popo').addClass('large-margin-top');
 	    $('.user-username').addClass('title');
+
+		$('.user-status').addClass('left-text');
 
 	    $('.user-chatrooms').addClass('absolute');
 		$('.user-chatrooms').addClass('top-5');

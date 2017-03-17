@@ -7,23 +7,23 @@
 
 		<div class="mobile-logo">
 			<%= image_tag ("logo.png"), class:"logo" %>
-			<p class="white-text lighter-font subtitle left">Blog</p>  
+			<p class="white-text lighter-font subtitle left medium-margin-top">Blog</p>  
 		</div>
 		
 		<div class="toggle-search">
-			<i class="fa fa-search white-text fa-2x"></i>
+			<i class="fa fa-search white-text font-26"></i>
 		</div>
 		<li id="mobile-header-search" class="list-none short-transition display-none">
 			<%= form_tag articles_path, method: :get do %>
 				<%= text_field_tag :article_search, params[:article_search], required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", placeholder: "Buscar artículos", class:"left border-none header-search short-transition" %>
 				<%= button_tag(type: "submit", class:"header-submit border-none") do %>
-					 <i class="fa fa-search"></i>
+					 <i class="fa fa-search font-26"></i>
 				<% end %> 
 			<%end%>
 		</li>
 
 		<div class="toggle-user">
-			<i class="fa fa-user white-text fa-2x"></i>
+			<i class="fa fa-user white-text font-26"></i>
 			<li class="header-user short-transition list-none">
 				<div class="pistache center-text">
 					<% if user_signed_in? %>
