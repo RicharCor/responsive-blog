@@ -18,7 +18,6 @@
 				<p class="red-text user-status">Desconectado</p>
 			<%end%>
 		</div>
-
 	</div>
 
 	<div class="center-text blue white-text circle medium-padding user-chatrooms box-115">
@@ -67,7 +66,7 @@
 
 
 	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding" id="user-articles-1">
-		<p class="big-text full large-margin-bottom center-text">
+		<p class="font-26 full large-margin-bottom center-text">
 			Artículos del usuario
 		</p>
 
@@ -83,7 +82,7 @@
 	</div>
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
-		<p class="big-text full large-margin-bottom center-text">
+		<p class="font-26 full large-margin-bottom center-text">
 			Comentarios del usuario
 		</p>
 		<% if @artiicles.where(user: @user).count == 0 %>
@@ -102,53 +101,71 @@
 
 	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
 		<div class="col-md-12 col-xs-12">
-			<p class="big-text large-margin-bottom center-text">
+			<p class="font-26 large-margin-bottom center-text">
 				Información del usuario
 			</p>
-			<p>
-				Nombre: <%= @user.first_name %>
-			</p> 
-			<p>
-				Apellido: <%= @user.last_name %>
-			</p>
-			<p>
-				Email: <%= @user.email %>
-			</p>
-			<p>
-				Ultima actividad: 
 
-				<br>
+			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+				<p class="font-18 small-margin-bottom">
+					Nombre:
+				</p>
+
+				<%= @user.first_name %>
+			</div> 
+
+			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+				<p class="font-18 small-margin-bottom">
+					Apellido:
+				</p>
+
+				<%= @user.last_name %>
+			</div>
+
+			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+				<p class="font-18 small-margin-bottom">
+					Email:
+				</p>
+
+				<%= @user.email %>
+			</div>
+
+			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+				<p class="font-18 small-margin-bottom">
+					Ultima actividad: 
+				</p>
 
 				<% if @user.last_seen > 24.hours.ago %>
 					Hace <%= time_ago_in_words(@user.last_seen) %>
 				<%else%>
 					<%= @user.last_seen.strftime("%H:%M, %d %b") %>
 				<%end%>
-			</p>
-			<p>
-				Ultimo inicio de sesión:
+			</div>
 
-				<br>
+			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+				<p class="font-18 small-margin-bottom">
+					Ultimo inicio de sesión:
+				</p>
 
 				<% if @user.current_sign_in_at > 24.hours.ago %>
 					Hace <%= time_ago_in_words(@user.current_sign_in_at) %>
 				<%else%>
 					<%= @user.current_sign_in_at.strftime("%H:%M, %d %b") %>
 				<%end%>
-			</p>
-
-			<br>
+			</div>
 
 			<div>
-				<% if @chatrooms.count > 1 %>
-					El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
-		        <%else%> 
-			    	<% if @chatrooms.count < 1 %>
-			    		El usuario no pertenece a salas de chat
-			    	<%else%>
-			    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
-			    	<%end%>
-		        <%end%>  
+				<p class="font-18">
+					<% if @chatrooms.count > 1 %>
+						El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
+			        <%else%> 
+				    	<% if @chatrooms.count < 1 %>
+				    		El usuario no pertenece a salas de chat
+				    	<%else%>
+				    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
+				    	<%end%>
+			        <%end%>  					
+				</p>
+
 				<% @chatrooms.each do |chatroom| %>
 		            <li>
 		                <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
@@ -183,7 +200,7 @@
 	  });
 
  	if ($(window).width() < 450) {
-	    $('.user-username').addClass('font-26');
+	    $('.user-username').addClass('font-28');
 	    $('.popo img').addClass('medium-margin-bottom');
 
 	    $('.user-chatrooms').addClass('block');

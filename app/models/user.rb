@@ -5,12 +5,13 @@ class User < ApplicationRecord
 
   	acts_as_messageable
 
-  	validates :avatar, presence: true
 	validates :username, presence: true, uniqueness: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 
-	validates_length_of :username, :maximum => 15
+	validates_length_of :username, maximum: 15
+	validates_length_of :first_name, maximum: 10
+	validates_length_of :last_name, maximum: 12
 
 	has_many :comments, :dependent => :delete_all
 	has_many :articles, :dependent => :delete_all
@@ -21,7 +22,8 @@ class User < ApplicationRecord
 
 	include PermissionsConcern
 
-	has_attached_file :avatar
+	has_attached_file :avatar, default_url: "avatar.jpg"
+	validates_attachment_size :avatar, less_than: 100.kilobytes
 	validates_attachment_content_type :avatar, { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 	extend FriendlyId

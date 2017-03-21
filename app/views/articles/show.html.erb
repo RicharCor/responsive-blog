@@ -1,56 +1,105 @@
 <% content_for :title do %>
-  <title>Blog | <%= @article.title %></title>
+  	<title>
+  		Blog | <%= @article.title %>
+  	</title>
 <% end %>
 
-<div>
-	<%= image_tag @article.cover.url, class:"cover" %>
-</div>
+<div class="row center-xs">
+	<%= image_tag @article.cover, class:"cover border-bottom z-index-1" %>
 
-<h1>
-	<%= @article.title %>
-</h1>
+	<div class="row center-xs col-xs-12 white left-text mega-padding large-margin-bottom">
+		<div class="col-xs-12 no-padding border-bottom medium-margin-bottom">
+			<p class="subtitle center-text medium-margin-bottom">
+				<%= @article.title %>
+			</p>
 
-<div>
-	<%= @article.body.html_safe %>
-</div>
+			<div class="large-margin-bottom">
+				<%= @article.body.html_safe %>
+			</div>
+		</div>
 
-<% unless @article.user.nil? %>
-	<p>Escrito por: <%= @article.user.username %></p>
-<%end%>
+		<% unless @article.user.nil? %>
+			<p class="col-md-4 col-xs-6 center-text medium-margin-bottom">
+				Escrito por:
 
-<% if @article.published? %>
-	Estado: Publicado
-<%else%>
-	Artículo pendiente a aprobación
-<%end%>
+				</br>
 
-<div>
-	<p>Visitas: <%= @article.visits_count %></p>
-	<% if user_signed_in? %>
-		<% if current_user == @article.user or current_user.is_admin? %>
-			<p><%= link_to "Editar", edit_article_path(@article) %></p>
+				<%= @article.user.username %>
+			</p>
+
+			<% if user_signed_in? %>
+				<% if current_user.id == @article.user.id or current_user.is_admin? %>
+					<p class="col-md-4 col-xs-6 center-text medium-margin-bottom">
+						<%= link_to "Editar", edit_article_path(@article) %>
+					</p>
+				<%end%>
+			<%end%>
 		<%end%>
-	<%end%>
-</div>
 
-<div>
-	<% @article.categories.each do |category| %>
-		<%= link_to category.title, category, style:"color: #{category.color};" %>
-	<%end%>
-</div>
+		<% if @article.published? %>
+			<div class="col-md-4 col-xs-6 center-text medium-margin-bottom">
+				Estado:
 
-<div>
-	<h3>
-		Comentarios
-	</h3>
+				<p class="green-text">
+					Publicado
+				</p>
+			</div>
+		<%else%>
+			<div class="col-md-4 col-xs-6 center-text medium-margin-bottom">
+				Estado:
 
-	<% if user_signed_in? %>
-		<%= render 'comments/form', :comment => @comment %>
-	<%else%>
-		<p>Tienes que iniciar sesión para agregar un comentario</p>
-	<%end%>
+				<p class="yellow-text">
+					Artículo pendiente a aprobación	
+				</p>
+			</div>
+		<%end%>
+
+		<div class="col-md-4 col-xs-6 center-text medium-margin-bottom">
+			<p>
+				Visitas: <%= @article.visits_count %>
+			</p>
+		</div>
+
+		<p class="col-xs-12 center-text font-20 medium-margin-bottom medium-padding-bottom border-bottom">
+			Categorías
+		</p>
+
+		<% @article.categories.each do |category| %>
+			<p class="col-md-4 col-xs-6 center-text small-margin-bottom">
+				<%= link_to category.title, category, style:"color: #{category.color};" %>
+			</p>
+		<%end%>
+	</div>
 	
-	<ul id="comments-box">
-		<%= render @comment %>
-	</ul>
+	<div class="col-md-7 col-xs-11 center-xs white mega-padding large-margin-bottom box-shadow">
+		<p class="font-20 small-margin-bottom">
+			<% if user_signed_in? %>
+				Crear comentario
+			<%else%>
+				Comentarios
+			<%end%>	
+		</p>
+
+		<p class="font-13 medium-margin-bottom medium-padding-bottom border-bottom">
+			<% if @article.comments.any? %>
+				Hay <%= @article.comments.count %> comentarios en este artículo
+			<%else%>	
+				No se encontraron comentaríos
+			<%end%>
+		</p>
+
+		<% if user_signed_in? %>
+			<div class="col-xs-12">
+				<%= render 'comments/form', :comment => @comment %>
+			</div>
+		<%else%>
+			<p class="font-13 red-text">
+				Tienes que iniciar sesión para agregar un comentario
+			</p>
+		<%end%>
+	</div>
 </div>
+
+<ul id="comments-box">
+	<%= render @comment %>
+</ul>

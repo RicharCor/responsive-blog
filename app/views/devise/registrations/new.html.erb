@@ -1,48 +1,62 @@
-<h2>Sign up</h2>
+<div class="row center-xs">
+    <div class="col-md-4 col-xs-11 white relative mega-padding top-100 box-shadow">
+        <%= image_tag "avatar.jpg", class:"circle box-150 margin-top--100" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <p class="subtitle large-padding-bottom border-bottom large-margin-bottom">
+            Crear cuenta
+        </p>
 
-  <div>
-    Avatar: <%= f.file_field :avatar, required: true %> 
-  </div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
 
-  <div>
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", maxlength: 15 %>
-  </div>
+            <div class="row">
+                <div class="col-xs-12 large-margin-bottom no-padding">
+                    <p class="font-18 small-margin-bottom">
+                        Avatar:
+                    </p>
 
-  <div>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, required: true, pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 10 %>
-  </div>
+                    <p class="font-13 green-text small-margin-bottom">
+                        (Puedes agregarla despues)
+                    </p> 
 
-  <div>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, required: true, pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 12 %>
-  </div>
+                    <%= f.file_field :avatar %> 
+                </div>
 
-  <div>
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :username, required: true, placeholder: "Username (15 caracteres maximo)", class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z0-9\s]*", maxlength: 15 %>
+                </div>
 
-  <div>
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :first_name, required: true, placeholder: "Nombre (10 caracteres maximo)", class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 10 %>
+                </div>
 
-  <div>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :last_name, required: true, placeholder: "Apellido (12 caracteres maximo)", class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 12 %>
+                </div>
 
-  <div>
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.email_field :email, required: true, placeholder: "Correo electronico", class:"full medium-padding" %>
+                </div>
 
-<%= render "devise/shared/links" %>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.password_field :password, required: true, placeholder: "Contraseña (12 caracteres mínimo)", class:"full medium-padding", autocomplete: "off" %>
+                </div>
+
+                <div class="col-xs-12 large-margin-bottom">
+                    <%= f.password_field :password_confirmation, required: true, placeholder: "Confirma la contraseña", class:"full medium-padding", autocomplete: "off" %>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div class="col-xs-6 no-padding">
+                        <%= f.submit "Registrarse", class:"btn blue small-border-radius" %>
+                    </div>
+
+                    <div class="col-xs-6 flex center-items justify-content no-padding">
+                        <%= render "devise/shared/links" %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+

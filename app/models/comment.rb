@@ -6,4 +6,7 @@ class Comment < ApplicationRecord
 
   	validates :title, presence: true
   	validates :body, presence: true, length: { minimum: 10 }
+
+  	validates_length_of :title, maximum: 50
+  	validates_length_of :body, maximum: 700
 end

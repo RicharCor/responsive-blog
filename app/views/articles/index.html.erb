@@ -1,11 +1,33 @@
-<% if @articles.any? %>
-	<h2 class="center-text large-margin-bottom large-margin-top ">Hay <%= @articles.count %> artículos en total</h2>
-<%else%>	
-	No se encontraron artículos
-<%end%>
+<div class="row">
+	<div class="row col-xs-12 white large-margin-bottom flex center-items center-text mega-padding">
+		<p class="col-sm-6 col-xs-12 subtitle center-text articles-title">
+			Artículos
+		</p>
+
+		<% if @articles.any? %>
+			<p class="col-sm-6 col-xs-12 center-text">
+				Hay <%= @articles.count %> artículos en total
+			</p>
+		<%else%>	
+			<p class="center-text">
+				No se encontraron artículos
+			</p>
+		<%end%>	
+	</div>
+</div>
 
 <div id="pagination" class="row center center-md center-sm">
 	<%= render @article %>
 </div>
 
 <%= will_paginate @articles %>
+
+<script type="text/javascript">
+
+		if ($(window).width() < 450) {
+			$('.articles-title').addClass('small-margin-bottom');
+
+		} else {
+		}
+
+</script>

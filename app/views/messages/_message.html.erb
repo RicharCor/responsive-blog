@@ -1,13 +1,79 @@
-<div class="flex center-items box mega-padding">
-	<%= link_to image_tag(message.user.avatar,  class:"box-50 circle"), message.user %>
-	<strong>
-		<%= link_to message.user.username, message.user %>:
-	</strong>
-	
-	<%= message.body %> - 
-	<% if message.created_at > 24.hours.ago %>
-		Hace <%= time_ago_in_words(message.created_at) %>
-	<%else%>
-		<%= message.created_at.strftime("%H:%M, %d %b") %>
-	<%end%>
+<div class="row col-xs-12 relative no-padding">
+	<div class="col-md-1 col-xs-12 user-avatar-message">
+		<%= link_to image_tag(message.user.avatar,  class:"box-50 circle"), message.user %>
+	</div>
+
+
+	<div class="row col-md-11 col-xs-12 no-padding large-margin-bottom">
+		<p class="col-md-12 user-username-message no-padding">
+			<%= link_to message.user.username, message.user %>
+		</p>
+
+		<div class="relative medium-padding medium-border-radius message white left-top max-width-full">
+			<p class="small-margin-bottom">
+			   	<%= message.body %>
+			</p>
+
+			<% if message.created_at > 24.hours.ago %>
+				<p class="font-13 grey-text">
+					Hace <%= time_ago_in_words(message.created_at) %>
+				</p>
+			<%else%>
+				<p class="font-13 grey-text">
+					<%= message.created_at.strftime("%H:%M, %d %b") %>
+				</p>
+			<%end%>
+		</div>
+	</div>
 </div>
+
+<style type="text/css">
+	.left-corner:before{
+		content: ' ';
+		position: absolute;
+		width: 0;
+		height: 0;
+	  	left: -5px;
+	  	display: block;
+		right: auto;
+	  	top: 0px;
+		bottom: auto;
+		border: 10px solid;
+		z-index: -1;
+		border-color: white transparent transparent transparent;
+	}
+
+	.up-corner:before{
+		content: ' ';
+		position: absolute;
+		width: 0;
+		height: 0;
+	  	left: 0;
+	  	display: block;
+		right: auto;
+	  	top: -5px;
+		bottom: auto;
+		border: 10px solid;
+		z-index: -1;
+		border-color: transparent transparent transparent white;
+	}
+</style>
+
+<script type="text/javascript">
+
+		if ($(window).width() < 450) {
+			$('.message').addClass('up-corner');
+
+			$('.user-avatar-message').addClass('no-padding');
+
+			$('.user-username-message').addClass('absolute');
+			$('.user-username-message').addClass('top-15');
+			$('.user-username-message').addClass('left-60');
+
+		} else {
+			$('.my-message').addClass('large-margin-left');
+
+			$('.message').addClass('left-corner');
+		}
+
+</script>

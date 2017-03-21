@@ -1,35 +1,64 @@
-<div class="fluid-container" style="margin-top: 90px;">
-    <div class="row">
-        <div class="col-sm-2" style="position: fixed; top: 70px; left: 0;">
-            <% if user_signed_in? %>
-                <h4>Chatrooms</h4>
-                <ul>
-                    <% current_user.chatrooms.each do |chatroom| %>
-                        <li>
-                            <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
-                        </li> 
-                    <%end%>   
-                </ul>
-            <%end%>    
+<div class="row">
+    <div class="row col-xs-12 full fixed large-padding box-shadow white z-index-500">
+        <p class="col-xs-6">
+            <%= link_to 'Volver al lobby', chatrooms_path %>
+        </p>
+
+        <div class="col-xs-6 pointer block blue full full-height show-user-chats">
+            <p clasS="white-text center-text">
+                Mis chats
+            </p>
         </div>
+    </div>
 
-        <div class="col-sm-10 col-sm-offset-2">
-			<p>
-			  <strong>Name:</strong>
-			  <%= @chatroom.name %>
-			</p>
+    <div class="col-md-2 col-xs-12 fixed top-110 large-padding left-0 white user-chats z-index-1">
+        <p class="small-margin-bottom font-20">
+            Salas de chat a las que perteneces
+        </p>
 
-			<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>' class="break-word">
-				<% @messages.each do |message| %>
-					<%= render message %>
-				<%end%>		
-			</div>
+        <div class="border-top">
+            <% current_user.chatrooms.each do |chatroom| %>
+                <p class="small-margin-top uppercase">
+                    <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
+                </p> 
+            <%end%>  
+        </div> 
+    </div>
 
-			<%= form_for [@chatroom, Message.new] do |f| %>
-				<%= f.text_field :body, autofocus: true %>
-			<%end%>
+    <div class="col-md-10 col-xs-12 col-md-offset-2 no-padding margin-top-50">
+		<p class="font-26 white small-padding center-text small-margin-bottom border-left">
+			<%= @chatroom.name.truncate(20) %>
+		</p>
 
-            <%= link_to 'Volver a las salas de chat', chatrooms_path %>
-        </div>        
-    </div>    
-</div>
+		<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>' class="overflow-y-auto large-padding-left large-padding-right" style="height:68vh;">
+            <div class="row flex center-items no-padding">
+    			<% @messages.each do |message| %>
+    				<%= render message %>
+    			<%end%>	
+            </div>	
+		</div>
+
+		<%= form_for [@chatroom, Message.new] do |f| %>
+			<%= f.text_field :body, autofocus: true, placeholder: "Envía un mensaje", class:"full medium-padding small-margin-top" %>
+		<%end%>
+    </div>        
+</div>    
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".show-user-chats").click(function(){
+                $(".user-chats").slideToggle("fast");
+            });
+        });
+
+        if ($(window).width() < 450) {
+            $('.user-chats').addClass('full');
+            $(".user-chats").addClass('display-none');
+
+        } else {
+            $('.show-user-chats').removeClass('block');
+            $('.show-user-chats').addClass('display-none');
+        }
+
+</script>

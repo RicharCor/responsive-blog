@@ -10,6 +10,24 @@
 			</div>
 
 			<div class="col-md-12 col-sm-12 col-xs-12 padding-to-article center-text white">
+				<div class="border-bottom hidden small-margin-bottom">
+					<p class="left font-13">
+						Visitas: <%= article.visits_count %>
+					</p>
+
+					<p class="right font-13 medium-margin-bottom">
+						<% if article.created_at > 24.hours.ago %>
+							<% if article.created_at > 1.minute.ago %>
+								Hace un momento
+							<%else%>
+								Hace <%= time_ago_in_words(article.created_at) %>
+							<%end%>
+						<%else%>
+							<%= article.created_at.strftime("%H:%M, %d %b") %>
+						<%end%>
+					</p>
+				</div>
+
 				<h2 class="small-margin-bottom">
 					<%= link_to article.title, article %>
 				</h2>

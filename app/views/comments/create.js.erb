@@ -1,13 +1,17 @@
 // Esto coloca un notice al crear el comentario
-$('#notices').append("<div class='notice'><i class='fa fa-check medium-margin-right'></i>Articulo creado satisfactoriamente<div class='close-notice right pointer'><i class='fa fa-times'></i></div></div>");
-//$('document').ready(function() {
-//	$('.notice').delay(3000).slideUp('fast');
-//});
+	$('#notices').html("<div class='notice row col-xs-12 large-padding flex center-items'><i class='fa fa-check col-xs-1 no-padding font-20 center-text'></i><p class='col-xs-10'>Si sobrepasas el límite de caracteres en el cuerpo no podrás guardar el comentario</p><div class='close-notice col-xs-1 no-padding center-text pointer'><i class='fa fa-times font-20'></i></div></div>");
+	
+//Este oculta el notice despues de que se crea el comentario
+	$('document').ready(function() {
+		$('.notice').delay(2500).slideUp('fast');
+	});
 
 $('#comments-box').html("<%= j render @comment %>");
-$('#caca_<%= @comment.id %>').addClass('yellow').delay(400).queue(function(){
-   $(this).removeClass('yellow') 
-});
+
+//Este hace amarillo el fondo del comentario al ser creado
+	$('#yellow_at_create_comment_<%= @comment.id %>').addClass('yellow').delay(600).queue(function(){
+   		$(this).removeClass('yellow') 
+	});
 
 $('#comment_title').val("");
 $('#comment_body').val("");

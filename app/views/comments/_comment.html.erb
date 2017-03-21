@@ -1,14 +1,6 @@
-<p>
-	<% if @article.comments.any? %>
-		Hay <%= @article.comments.count %> comentarios en este artículo
-	<%else%>	
-		No se encontraron comentaríos
-	<%end%>
-</p>
-
-<div class="row center-md center-sm relative">
+<div class="row center-xs relative">
 	<% @article.comments.each do |comment| %>
-		<div id="caca_<%= comment.id %>" class="col-md-7 col-sm-11 comment-container white short-transition large-margin-bottom box-shadow">
+		<div id="yellow_at_create_comment_<%= comment.id %>" class="col-md-7 col-xs-11 comment-container white short-transition large-margin-bottom box-shadow">
 			<% if comment.user.nil? %>
 				<li class="list-none">		
 					<% if current_user.is_admin? %>
@@ -18,29 +10,37 @@
 			<%else%>
 
 				<li class="row list-none">
-					<div class="col-md-2 col-sm-3">
-						<%= link_to image_tag(comment.user.avatar, class:"circle comment-image") %>
+					<div class="col-md-2 col-xs-12">
+						<%= link_to image_tag(comment.user.avatar, class:"circle box-70 article-comment-avatar white"), comment.user %>
 					</div>
 					
-					<div class="col-md-10 col-sm-9">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 small-margin-bottom">
-								<h2 class="left"><%= link_to comment.user.username, comment.user %></h2>
-								<p class="right-text small-margin-top">Hace <%= time_ago_in_words(comment.created_at) %></p>
+					<div class="col-md-10 col-xs-12">
+						<div class="row center-xs">
+							<div class="row col-md-12 col-xs-12 small-margin-bottom no-padding">
+								<h2 class="col-md-6 col-xs-12 no-padding article-comment-username font-20 left">
+									<%= link_to comment.user.username, comment.user %>
+								</h2>
+
+								<p class="col-md-6 col-xs-12 no-padding article-comment-created-at font-13 flex center-items justify-content">
+									Hace <%= time_ago_in_words(comment.created_at) %>
+								</p>
+
 								<% if user_signed_in? %>
 									<% if current_user.is_admin? or comment.user == current_user %>
-										<p class="right no-padding small-margin-top"><%= link_to "Eliminar", [@article, comment], remote: true, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %></p>
+										<p class="small-margin-top">
+											<%= link_to "Eliminar", [@article, comment], remote: true, method: :delete, data: { confirm: "You sure?" }, class:"red-text" %>
+										</p>
 									<%end%>
 								<%end%>
 							</div>
 
-							<div class="col-md-12 col-sm-12 left-text">
+							<div class="col-md-12 col-xs-12 left-text no-padding">
 								<h4 class="border-top medium-padding-top">
 									<%= comment.title %>
 								</h4>
 							</div>
 
-							<div class="col-md-12 col-sm-12 left-text small-padding-top">
+							<div class="col-md-12 col-xs-12 left-text small-margin-top no-padding">
 								<div>
 									<% if comment.body.length > 400 %>
 									    <%= truncate(comment.body, length: 400) %>
@@ -64,3 +64,20 @@
 		<%end%>	
 	<%end%>
 </div>
+
+<script type="text/javascript">
+
+		if ($(window).width() < 450) {
+			$('.comment-container').addClass('margin-top-50');
+			$('.comment-container').removeClass('large-margin-bottom');
+
+			$('.article-comment-avatar').addClass('margin-top--70');
+
+		} else {
+			$('.article-comment-username').addClass('left-text');
+
+			$('.article-comment-created-at').removeClass('justify-content');
+			$('.article-comment-created-at').addClass('justify-right');
+		};
+
+</script>

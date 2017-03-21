@@ -1,25 +1,35 @@
 <%= form_for([@article, @comment], remote: true) do |f| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+    <% if comment.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:
+            </h2>
 
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% comment.errors.full_messages.each do |message| %>
+                    <li>
+                        <%= message %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="medium-margin-bottom">
+        <%= f.text_field :title, id: 'comment-title', placeholder: "Título", required: true, class:"full medium-padding" %>
+
+        <p id="comment-title-character-counter" class="short-transition font-13 right-text">
+        </p>
     </div>
-  <% end %>
 
-  <div>
-    <%= f.text_field :title, id: 'comment_title', placeholder: "Título" %>
-  </div>
+    <div class="large-margin-bottom">
+        <%= f.text_area :body, id: 'comment-body', placeholder: "Cuerpo del comentario", required: true, class:"full medium-padding" %>
 
-  <div>
-    <%= f.text_area :body, id: 'comment_body', placeholder: "Cuerpo del comentario" %>
-  </div>
+        <p id="comment-body-character-counter" class="short-transition font-13 right-text">
+        </p>
+    </div>
 
-  <div>
-    <%= f.submit %>
-  </div>
+    <div>
+        <%= f.submit "Crear comentario", class:"btn blue small-border-radius save-comment" %>
+    </div>
 <% end %>

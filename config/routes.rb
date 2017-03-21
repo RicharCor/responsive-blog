@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 	devise_for :users 
 	resources :users, only: [:index, :show, :destroy]
 
+	# Con esto se puede acceder a la vista del usuario. Ej: http://localhost:3000/1 (Id del primer usuario)
+		#get '/:id', to: 'users#show'
+
 	get "/dashboard", to: "welcome#dashboard"
 
 	put "/articles/:id/publish", to: "articles#publish"

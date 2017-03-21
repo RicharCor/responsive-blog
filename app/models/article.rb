@@ -10,6 +10,9 @@ class Article < ApplicationRecord
 	validates :cover, presence: true
 	validates :title, presence: true, uniqueness: true
 	validates :body, presence: true, length: { minimum: 20 }
+
+	validates_length_of :title, maximum: 50
+
 	before_save :set_visits_count
 	after_create :save_categories
 

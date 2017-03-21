@@ -28,24 +28,23 @@ a{
 	color:#3498db;
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #bdc3c7;
-  font-size: 14px;
+    color: grey;
+    font-size: 14px;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #bdc3c7;
-  font-size: 14px;
+    color: grey;
+    font-size: 14px;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #bdc3c7;
-  font-size: 14px;
+    color: grey;
+    font-size: 14px;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #bdc3c7;
-  font-size: 14px;
+    color: grey;
+    font-size: 14px;
 }
 .loading-indicator-container{
     max-width: 1500px;
-    z-index: 1001;
     top: 90px;
 }
 .loading-indicator{
@@ -57,43 +56,29 @@ a{
 	z-index: 1;
 }
 .notice{
-	padding:15px 20px;
 	color: #3c763d; 
 	background-color: #dff0d8; 
 	border: 1px solid #d6e9c6; 
 	max-width: 1500px;
 }
 .alert{
-	padding:15px 20px; 
 	background-color: #f2dede; 
 	border: 1px solid #ebccd1; 
 	max-width: 1500px;
 }
 .loading-more img{
-	width: 120px;
+   width: 120px;
+}
+.cover{
+    width: 100%;
+    height: 180px;
 }
 
 @media screen and (max-width: 1024px) {
 	.margin-from-header{
 		margin-top: 60px !important;
 	}
-	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-	  	color: #bdc3c7;
-	  	font-size: 16px;
-	}
-	::-moz-placeholder { /* Firefox 19+ */
-	  	color: #bdc3c7;
-	  	font-size: 16px;
-	}
-	:-ms-input-placeholder { /* IE 10+ */
-	  	color: #bdc3c7;
-	  	font-size: 16px;
-	}
-	:-moz-placeholder { /* Firefox 18- */
-	  	color: #bdc3c7;
-	  	font-size: 16px;
-	}
-    .loading-indicator-container{
-    	top: 150px;
+    .cover{
+        height: 80px;
     }
 }
