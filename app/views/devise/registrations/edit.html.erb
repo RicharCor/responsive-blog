@@ -1,63 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row center-xs relative top-100">
+    <div class="col-md-5 col-xs-11 white mega-padding box-shadow large-margin-bottom">
+        <% if current_user.avatar.file? %>
+            <%= image_tag current_user.avatar,  class:"circle box-150 margin-top--100 border" %>
+        <%else%>
+            <%= image_tag "avatar.jpg", class:"circle box-150 margin-top--100" %>
+        <%end%>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+        <p class="subtitle large-padding-bottom border-bottom large-margin-bottom">
+            Editar cuenta
+        </p>
 
-  <div>
-    <%= f.label :avatar %> <i>(leave blank if you don't want to change it)</i><br /> 
-    <%= f.file_field :avatar %>
-  </div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-  <div>
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, required: true, pattern: "[a-zA-Z][a-zA-Z0-9\s]*", maxlength: 15 %>
-  </div>
+            <div class="row"> 
+               <div class="col-xs-12 large-margin-bottom no-padding">
+                    <p class="font-18 small-margin-bottom">
+                        Avatar:
+                    </p>
 
-  <div>
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, required: true, pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 10 %>
-  </div>
+                    <p class="font-13 red-text small-margin-bottom">
+                        (Deja en blanco si no quieres cambiarla)
+                    </p> 
 
-  <div>
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, required: true, pattern: "[a-zA-Z][a-zA-Z]*", maxlength: 12 %>
-  </div>
+                    <%= f.file_field :avatar %> 
+                </div>
 
-  <div>
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :username, autofocus: true, required: true, class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z0-9\s]*" %>
+                </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :first_name, required: true, class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z]*" %>
+                </div>
 
-  <div>
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.text_field :last_name, required: true, class:"full medium-padding", pattern: "[a-zA-Z][a-zA-Z]*" %>
+                </div>
 
-  <div>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.email_field :email, required: true, class:"full medium-padding" %>
+                </div>
 
-  <div>
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div class="col-xs-12 medium-margin-bottom">
+                        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+                    </div>
+                <% end %>
 
-  <div>
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+                <div class="col-xs-12 medium-margin-bottom">
+                    <%= f.password_field :password, placeholder: "Nueva contraseña", class:"full medium-padding", autocomplete: "off" %>
 
-<h3>Cancel my account</h3>
+                    <p class="font-13 red-text small-margin-top">
+                        (Deja en blanco si no quieres cambiar tu contraseña)
+                    </p>
+                </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+                 <div class="col-xs-12 large-padding-bottom border-bottom large-margin-bottom">
+                    <%= f.password_field :password_confirmation, placeholder: "Confirma tu nueva contraseña", class:"full medium-padding", autocomplete: "off" %>
+                </div>
 
-<%= link_to "Back", :back %>
+                <div class="col-xs-12 large-margin-bottom">
+                    <%= f.password_field :current_password, required: true, placeholder: "Contraseña actual", class:"full medium-padding", autocomplete: "off" %>
+
+                    <p class="font-13 red-text small-margin-top">
+                        (Nesecitas escribir tu contraseña actual para guardar los cambios)
+                    </p>
+                </div>
+
+                <div class="col-xs-12">
+                    <%= f.submit "Actualizar", class:"btn blue small-border-radius" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="row center-xs relative top-100">
+    <div class="col-md-5 col-xs-11 white mega-padding box-shadow">
+        <p class="font-20 large-padding-bottom border-bottom large-margin-bottom">
+            Quieres eliminar tu cuenta?
+        </p>
+
+        <p>
+            <%= button_to "Eliminar", registration_path(resource_name), class:"btn red small-border-radius", data: { confirm: "Estas seguro?" }, method: :delete %>
+        </p>
+    </div>
+</div>

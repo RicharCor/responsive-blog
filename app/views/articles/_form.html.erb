@@ -28,20 +28,20 @@
 		<%= f.trix_editor :body, placeholder: "Cuerpo del artículo", class:"left-text" %>
 	</div>
 
-		<% if @article.categories.empty? %>
-			<div class="row full center left-text large-margin-bottom">
-				<div class="col-md-12 col-xs-12 small-margin-bottom border-bottom medium-padding-bottom center-text font-18">
-					Categorías
-				</div>
+	<% if @article.categories.empty? %>
+		<div class="row full center left-text large-margin-bottom">
+			<div class="col-md-12 col-xs-12 small-margin-bottom border-bottom medium-padding-bottom center-text font-18">
+				Categorías
+			</div>
 
-				<% @categories.each do |category| %>
-					<div class="col-md-6 col-sm-6 col-xs-12 small-margin-top small-margin-bottom">
-						<%= check_box_tag "categories[]", category.id %>
-						<%= category.title %>
-					</div>
-				<%end%>
-			</div>	
-		<%end%>
+			<% @categories.each do |category| %>
+				<div class="col-md-6 col-sm-6 col-xs-12 small-margin-top small-margin-bottom">
+					<%= check_box_tag "categories[]", category.id %>
+					<%= category.title %>
+				</div>
+			<%end%>
+		</div>	
+	<%end%>
 
 	<div>
 		<%= f.submit "Guardar", class:"save-article btn blue small-border-radius" %>

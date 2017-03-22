@@ -19,7 +19,6 @@ class User < ApplicationRecord
 	has_many :chatrooms, through: :chatroom_users
 	has_many :messages, :dependent => :delete_all
 	
-
 	include PermissionsConcern
 
 	has_attached_file :avatar, default_url: "avatar.jpg"

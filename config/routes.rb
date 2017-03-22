@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   		resources :comments, only: [:create, :destroy]
 	end
 
-	devise_for :users 
+	devise_for :users, :controllers => { :registrations => :registrations }
 	resources :users, only: [:index, :show, :destroy]
 
 	# Con esto se puede acceder a la vista del usuario. Ej: http://localhost:3000/1 (Id del primer usuario)

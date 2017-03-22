@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="row col-xs-12 full fixed large-padding box-shadow white z-index-500">
+    <div class="row col-xs-12 full back-to-chatrooms large-padding box-shadow white z-index-500">
         <p class="col-xs-6">
             <%= link_to 'Volver al lobby', chatrooms_path %>
         </p>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-xs-12 fixed top-110 large-padding left-0 white user-chats z-index-1">
+    <div class="col-md-2 col-xs-12 large-padding white user-chats z-index-1">
         <p class="small-margin-bottom font-20">
             Salas de chat a las que perteneces
         </p>
@@ -25,7 +25,7 @@
         </div> 
     </div>
 
-    <div class="col-md-10 col-xs-12 col-md-offset-2 no-padding margin-top-50">
+    <div class="col-md-10 col-xs-12 no-padding chat-container">
 		<p class="font-26 white small-padding center-text small-margin-bottom border-left">
 			<%= @chatroom.name.truncate(20) %>
 		</p>
@@ -53,8 +53,15 @@
         });
 
         if ($(window).width() < 450) {
+            $('.back-to-chatrooms').addClass('fixed');
+            
             $('.user-chats').addClass('full');
             $(".user-chats").addClass('display-none');
+            $(".user-chats").addClass('fixed');
+            $(".user-chats").addClass('top-110');
+            $(".user-chats").addClass('left-0');
+
+            $('.chat-container').addClass('margin-top-50');
 
         } else {
             $('.show-user-chats').removeClass('block');
