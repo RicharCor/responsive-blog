@@ -10,6 +10,12 @@
             Editar cuenta
         </p>
 
+        <% if @user.in_public? %> 
+            <%= link_to "Hacer perfíl privado", "/users/#{@user.id}/private", method: :put, class:"orange-text" %>
+        <%else%>
+            <%= link_to "Hacer perfíl publico", "/users/#{@user.id}/unprivate", method: :put, class:"dark-green-text" %>
+        <%end%>
+
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= devise_error_messages! %>
 

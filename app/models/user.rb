@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	include AASM
 	default_scope { order('created_at DESC') }
 
   	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :lastseenable
@@ -27,6 +28,23 @@ class User < ApplicationRecord
 
 	extend FriendlyId
 	friendly_id :username, use: :slugged
+
+	scope :privateds, ->{ where(state: "privated") }
+
+	#scope :lastest, ->{ order("created_at DESC") }
+
+	aasm column: "state" do
+		state :in_public, initial: true
+		state :privated
+
+		event :private do
+			transitions from: :in_public, to: :privated
+		end
+
+		event :unprivate do
+			transitions from: :privated, to: :in_public
+		end
+	end
 
 	def should_generate_new_friendly_id?
 	   new_record? || slug.nil? || slug.blank? || username_changed?

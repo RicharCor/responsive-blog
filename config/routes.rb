@@ -24,5 +24,8 @@ Rails.application.routes.draw do
 	put "/articles/:id/publish", to: "articles#publish"
 	put "/articles/:id/unpublish", to: "articles#unpublish"
 
+	put "/users/:id/private", to: "users#private"
+	put "/users/:id/unprivate", to: "users#unprivate"
+
 	mount ActionCable.server => '/cable'
 end

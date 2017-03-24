@@ -57,124 +57,128 @@
 	</div>
 </div>
 
-<div class="row center-md center-xs left-text">
-	<div class="row col-md-10 col-xs-12 no-padding">
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text white" id="user-articles"><i class="fa fa-file-text-o"></i></a>
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-comments"><i class="fa fa-commenting-o"></i></a>
-		<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-info"><i class="fa fa-user-o"></i></a>
-	</div>
+<% if @user.in_public? %>
+	<div class="row center-md center-xs left-text">
+		<div class="row col-md-10 col-xs-12 no-padding">
+			<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text white" id="user-articles"><i class="fa fa-file-text-o"></i></a>
+			<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-comments"><i class="fa fa-commenting-o"></i></a>
+			<a href="javascript:;" class="tabLink col-md-4 col-xs-4 block left large-padding big-text white-text blue-flat center-text" id="user-info"><i class="fa fa-user-o"></i></a>
+		</div>
 
 
-	<div class="row tabcontent col-md-10 col-xs-12 white mega-padding" id="user-articles-1">
-		<p class="font-26 full large-margin-bottom center-text">
-			Artículos del usuario
-		</p>
-
-		<% if @articles.count == 0 %>
-			Este usuario no a publicado artículos aún
-		<%else%>
-			<% @articles.each do |article| %>
-				<div class="col-md-6 col-xs-12">
-					<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
-				</div>
-			<%end%>	
-		<%end%>
-	</div>
-
-	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
-		<p class="font-26 full large-margin-bottom center-text">
-			Comentarios del usuario
-		</p>
-		<% if @artiicles.where(user: @user).count == 0 %>
-			Este usuario no a comentado aún
-		<%else%>
-			<% @artiicles.each do |article| %>
-				<% article.comments.where(user: @user).each do |comment| %>
-					<div class="col-md-6 col-xs-12">
-						<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
-						<%= comment.title %>
-					</div>
-				<%end%>		
-			<%end%>
-		<%end%>
-	</div>
-
-	<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
-		<div class="col-md-12 col-xs-12">
-			<p class="font-26 large-margin-bottom center-text">
-				Información del usuario
+		<div class="row tabcontent col-md-10 col-xs-12 white mega-padding" id="user-articles-1">
+			<p class="font-26 full large-margin-bottom center-text">
+				Artículos del usuario
 			</p>
 
-			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
-				<p class="font-18 small-margin-bottom">
-					Nombre:
-				</p>
-
-				<%= @user.first_name %>
-			</div> 
-
-			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
-				<p class="font-18 small-margin-bottom">
-					Apellido:
-				</p>
-
-				<%= @user.last_name %>
-			</div>
-
-			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
-				<p class="font-18 small-margin-bottom">
-					Email:
-				</p>
-
-				<%= @user.email %>
-			</div>
-
-			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
-				<p class="font-18 small-margin-bottom">
-					Ultima actividad: 
-				</p>
-
-				<% if @user.last_seen > 24.hours.ago %>
-					Hace <%= time_ago_in_words(@user.last_seen) %>
-				<%else%>
-					<%= @user.last_seen.strftime("%H:%M, %d %b") %>
-				<%end%>
-			</div>
-
-			<div class="medium-padding-bottom medium-margin-bottom border-bottom">
-				<p class="font-18 small-margin-bottom">
-					Ultimo inicio de sesión:
-				</p>
-
-				<% if @user.current_sign_in_at > 24.hours.ago %>
-					Hace <%= time_ago_in_words(@user.current_sign_in_at) %>
-				<%else%>
-					<%= @user.current_sign_in_at.strftime("%H:%M, %d %b") %>
-				<%end%>
-			</div>
-
-			<div>
-				<p class="font-18">
-					<% if @chatrooms.count > 1 %>
-						El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
-			        <%else%> 
-				    	<% if @chatrooms.count < 1 %>
-				    		El usuario no pertenece a salas de chat
-				    	<%else%>
-				    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
-				    	<%end%>
-			        <%end%>  					
-				</p>
-
-				<% @chatrooms.each do |chatroom| %>
-		            <li>
-		                <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
-		            </li> 
-	            <%end%>   
-			</div>
+			<% if @articles.count == 0 %>
+				Este usuario no a publicado artículos aún
+			<%else%>
+				<% @articles.each do |article| %>
+					<div class="col-md-6 col-xs-12">
+						<%= @user.username %> creó un nuevo <%= link_to "artículo", article %> hace <%= time_ago_in_words(article.created_at) %>
+					</div>
+				<%end%>	
+			<%end%>
 		</div>
-	</div>		
-</div>
+
+		<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white" id="user-comments-1">
+			<p class="font-26 full large-margin-bottom center-text">
+				Comentarios del usuario
+			</p>
+			<% if @artiicles.where(user: @user).count == 0 %>
+				Este usuario no a comentado aún
+			<%else%>
+				<% @artiicles.each do |article| %>
+					<% article.comments.where(user: @user).each do |comment| %>
+						<div class="col-md-6 col-xs-12">
+							<%= @user.username %> comentó un <%= link_to "artículo", article %> hace <%= time_ago_in_words(comment.created_at) %>
+							<%= comment.title %>
+						</div>
+					<%end%>		
+				<%end%>
+			<%end%>
+		</div>
+
+		<div class="row tabcontent display-none col-md-10 col-xs-12 mega-padding white justify-content" id="user-info-1">
+			<div class="col-md-12 col-xs-12">
+				<p class="font-26 large-margin-bottom center-text">
+					Información del usuario
+				</p>
+
+				<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+					<p class="font-18 small-margin-bottom">
+						Nombre:
+					</p>
+
+					<%= @user.first_name %>
+				</div> 
+
+				<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+					<p class="font-18 small-margin-bottom">
+						Apellido:
+					</p>
+
+					<%= @user.last_name %>
+				</div>
+
+				<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+					<p class="font-18 small-margin-bottom">
+						Email:
+					</p>
+
+					<%= @user.email %>
+				</div>
+
+				<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+					<p class="font-18 small-margin-bottom">
+						Ultima actividad: 
+					</p>
+
+					<% if @user.last_seen > 24.hours.ago %>
+						Hace <%= time_ago_in_words(@user.last_seen) %>
+					<%else%>
+						<%= @user.last_seen.strftime("%H:%M, %d %b") %>
+					<%end%>
+				</div>
+
+				<div class="medium-padding-bottom medium-margin-bottom border-bottom">
+					<p class="font-18 small-margin-bottom">
+						Ultimo inicio de sesión:
+					</p>
+
+					<% if @user.current_sign_in_at > 24.hours.ago %>
+						Hace <%= time_ago_in_words(@user.current_sign_in_at) %>
+					<%else%>
+						<%= @user.current_sign_in_at.strftime("%H:%M, %d %b") %>
+					<%end%>
+				</div>
+
+				<div>
+					<p class="font-18">
+						<% if @chatrooms.count > 1 %>
+							El usuario pertenece a <%= @user.chatrooms.count %> salas de chat:
+				        <%else%> 
+					    	<% if @chatrooms.count < 1 %>
+					    		El usuario no pertenece a salas de chat
+					    	<%else%>
+					    		El usuario pertenece a <%= @user.chatrooms.count %> sala de chat:
+					    	<%end%>
+				        <%end%>  					
+					</p>
+
+					<% @chatrooms.each do |chatroom| %>
+			            <li>
+			                <%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id } %>
+			            </li> 
+		            <%end%>   
+				</div>
+			</div>
+		</div>		
+	</div>
+<%else%>
+	Caca
+<%end%>
 
 <script type="text/javascript">
   $(document).ready(function() {
